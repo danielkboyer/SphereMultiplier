@@ -16,7 +16,7 @@ public class EnemyBundle
     private int spawnAmountSoFar = 0;
     public bool CanSpawn(float elapsed)
     {
-        if (elapsed/spawnTime   > spawnAmountSoFar && (spawnRepeat > spawnAmountSoFar || spawnRepeat == -1))
+        if (elapsed/spawnTime   > (spawnAmountSoFar+1) && (spawnRepeat > spawnAmountSoFar || spawnRepeat == -1))
         {
             spawnAmountSoFar++;
             return true;
