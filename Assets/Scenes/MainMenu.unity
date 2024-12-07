@@ -2911,10 +2911,6 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
-    - target: {fileID: -4683669308469848369, guid: 3d7e6dd3212784c4eb27485cb6f52368, type: 3}
-      propertyPath: 'm_Materials.Array.data[0]'
-      value: 
-      objectReference: {fileID: 2100000, guid: 756ed8522df082d4cb6bc9c36fe0f688, type: 2}
     - target: {fileID: -8679921383154817045, guid: 3669b1e62c7641a458afa2c7cae9675b, type: 3}
       propertyPath: m_LocalScale.y
       value: 0.68
@@ -2967,6 +2963,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: box1
       objectReference: {fileID: 0}
+    - target: {fileID: -4683669308469848369, guid: 3d7e6dd3212784c4eb27485cb6f52368, type: 3}
+      propertyPath: 'm_Materials.Array.data[0]'
+      value: 
+      objectReference: {fileID: 2100000, guid: 756ed8522df082d4cb6bc9c36fe0f688, type: 2}
     m_RemovedComponents: []
     m_RemovedGameObjects:
     - {fileID: -8700617353114198275, guid: 3d7e6dd3212784c4eb27485cb6f52368, type: 3}
@@ -3091,8 +3091,8 @@ BoxCollider:
   m_ProvidesContacts: 0
   m_Enabled: 1
   serializedVersion: 3
-  m_Size: {x: 5.6765165, y: 68.47378, z: 0.46363354}
-  m_Center: {x: 0.007176876, y: 31.93439, z: -3.0860052}
+  m_Size: {x: 5.6765165, y: 68.47377, z: 0.5188699}
+  m_Center: {x: 0.007176876, y: 31.93439, z: -3.058387}
 --- !u!65 &2043326718
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -3133,8 +3133,8 @@ BoxCollider:
   m_ProvidesContacts: 0
   m_Enabled: 1
   serializedVersion: 3
-  m_Size: {x: 5.6691084, y: 4.633902, z: 5.727102}
-  m_Center: {x: 0.010243893, y: -4.5965285, z: -0.019157171}
+  m_Size: {x: 5.6691084, y: 4.974352, z: 5.727102}
+  m_Center: {x: 0.010243893, y: -4.4263034, z: -0.019157171}
 --- !u!65 &2043326720
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -3154,8 +3154,8 @@ BoxCollider:
   m_ProvidesContacts: 0
   m_Enabled: 1
   serializedVersion: 3
-  m_Size: {x: 5.927501, y: 0.28664994, z: 5.6981034}
-  m_Center: {x: -0.11104751, y: 4.5502257, z: -0.80210423}
+  m_Size: {x: 5.927501, y: 0.28664994, z: 6.922044}
+  m_Center: {x: -0.11104751, y: 4.5502257, z: -0.19013405}
 --- !u!1660057539 &9223372036854775807
 SceneRoots:
   m_ObjectHideFlags: 0
