@@ -27,20 +27,20 @@ public class TeasureBox : MonoBehaviour
 
     private void OnTriggerEnter(Collider other)
     {
-        if(other.tag == "Coin" && currentSpawnTime < TotalCoinSpawnTime + TextUpdateDelay)
+        if (other.tag == "Coin" && currentSpawnTime < TotalCoinSpawnTime + TextUpdateDelay)
         {
             currentTextCount++;
-            CoinText.text = Mathf.Min((currentTextCount * 10),coins).ToString()+" COINS";
+            CoinText.text = Mathf.Min((currentTextCount * 10), coins).ToString() + " COINS";
         }
     }
-    // Update is called once per frame
+    //// Update is called once per frame
     void Update()
     {
 
-        if(currentSpawnTime >= TotalCoinSpawnTime)
+        if (currentSpawnTime >= TotalCoinSpawnTime)
         {
-            
-            if(currentTextCount != coins)
+
+            if (currentTextCount != coins)
             {
                 currentSpawnTime += Time.deltaTime;
                 if (currentSpawnTime >= TotalCoinSpawnTime + TextUpdateDelay)
@@ -51,14 +51,16 @@ public class TeasureBox : MonoBehaviour
             }
             return;
         }
-        var totalCoinsNeeded = coins / 10;
-        var coinsPerSecond = TotalCoinSpawnTime / totalCoinsNeeded;
-        currentSpawnTime += Time.deltaTime;
-        var coinsNeeded = Mathf.FloorToInt(currentSpawnTime/coinsPerSecond);
-     
-        if (spawnedCoins < coinsNeeded)
+        if(coins == 0)
         {
-            for (var x = spawnedCoins; spawnedCoins < coinsNeeded; x++)
+            return;
+        }
+        var totalCoinsNeeded = coins / 10;
+        var coinsPerSecond =  TotalCoinSpawnTime / totalCoinsNeeded;
+        currentSpawnTime += Time.deltaTime;
+        var coinsNeeded = Mathf.FloorToInt(currentSpawnTime / coinsPerSecond);
+
+            while (spawnedCoins < coinsNeeded)
             {
                 var random = Random.Range(0 - Randomness, Randomness);
                 var position = SpawnPoint.position;
@@ -67,7 +69,9 @@ public class TeasureBox : MonoBehaviour
                 position.z += random;
                 var rb = Instantiate(CoinObject, position, Quaternion.Euler(new Vector3(Random.Range(0, 360), Random.Range(0, 360), Random.Range(0, 360)))).GetComponent<Rigidbody>();
                 rb.AddForce(new Vector3(0, -ForcePower, 0));
+                spawnedCoins++;
             }
-        }
+          
+        
     }
 }
