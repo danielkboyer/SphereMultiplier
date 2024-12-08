@@ -62,7 +62,7 @@ public class EnemyBuilding : MonoBehaviour
     public GameObject BigEnemy;
     public Transform SpawnPosition;
     public Color TextSuccessColor;
-    public GameManager gameManager;
+    private GameManager gameManager;
     public float buildingHealth = 1000;
     public EnemyBundle[] enemyBundles;
     private float currentSpawnTime = 0;
@@ -74,6 +74,7 @@ public class EnemyBuilding : MonoBehaviour
     void Start()
     {
         textMesh.text = buildingHealth.ToString();
+        gameManager = FindFirstObjectByType<GameManager>();
     }
 
     public bool IsDestroyed()
