@@ -1,3 +1,4 @@
+using System.Collections;
 using Assets;
 using TMPro;
 using UnityEngine;
@@ -14,15 +15,30 @@ public class EnemyBundle
     public float spawnRepeat;
 
     private int spawnAmountSoFar = 0;
+
+    private bool spawnInProgress = false;
+    private float totalSpawningTime = 0;
     public bool CanSpawn(float elapsed)
     {
-        if (elapsed/spawnTime   > (spawnAmountSoFar+1) && (spawnRepeat > spawnAmountSoFar || spawnRepeat == -1))
+        var elapsedMinusSpawn = elapsed - totalSpawningTime;
+        if (!spawnInProgress && elapsedMinusSpawn / spawnTime   > (spawnAmountSoFar+1) && (spawnRepeat > spawnAmountSoFar || spawnRepeat == -1))
         {
             spawnAmountSoFar++;
             return true;
         }
 
         return false;
+    }
+
+    public void IsSpawning()
+    {
+        spawnInProgress = true;
+    }
+
+    public void DoneSpawning(float timeSpawning)
+    {
+        spawnInProgress = false;
+        totalSpawningTime += timeSpawning;
     }
 
 
@@ -37,8 +53,8 @@ public class EnemyBuilding : MonoBehaviour
     public float buildingHealth = 1000;
     public EnemyBundle[] enemyBundles;
     private float currentSpawnTime = 0;
-
-
+    public float SpawnRandomness = 0.5f;
+    public float delayTimePerEnemy = 0.1f;
     private bool gameOver = false;
     public TextMeshPro textMesh;
     // Start is called once before the first execution of Update after the MonoBehaviour is created
@@ -81,6 +97,43 @@ public class EnemyBuilding : MonoBehaviour
         }
     }
 
+    IEnumerator SpawnBundle(EnemyBundle bundle)
+    {
+        bundle.IsSpawning();
+        var start = Time.time;
+        var renderer = Enemy.GetComponent<MeshRenderer>();
+        var diameter = renderer.bounds.size.x;
+        for (var y = 0; y < 2; y++)
+        {
+            var enemyToSpawn = Enemy;
+            var spawnAmount = bundle.smallAmount;
+            if (y == 1)
+            {
+                enemyToSpawn = BigEnemy;
+                spawnAmount = bundle.bigAmount;
+            }
+            for (var x = 0; x < spawnAmount; x++)
+            {
+                var horizontalPos = x % 5;
+                var awayMulti = diameter / 2;
+
+                var newPos = SpawnPosition.position;
+
+                //Add a little bit of randomness so it's blob like
+                newPos.z += awayMulti + Random.Range(-SpawnRandomness, SpawnRandomness);
+
+                newPos.x += (2 - horizontalPos) * (diameter / 2);
+
+                Instantiate(enemyToSpawn, newPos, Quaternion.identity);
+                yield return new WaitForSeconds(delayTimePerEnemy); // start at time X
+            }
+        }
+
+        bundle.DoneSpawning(Time.time - start);
+
+
+    }
+
     // Update is called once per frame
     void Update()
     {
@@ -96,30 +149,7 @@ public class EnemyBuilding : MonoBehaviour
         {
             if (bundle.CanSpawn(currentSpawnTime))
             {
-                var renderer = Enemy.GetComponent<MeshRenderer>();
-                var diameter = renderer.bounds.size.x;
-                for (var y = 0; y < 2; y++)
-                {
-                    var enemyToSpawn = Enemy;
-                    var spawnAmount = bundle.smallAmount;
-                    if(y == 1)
-                    {
-                        enemyToSpawn = BigEnemy;
-                        spawnAmount = bundle.bigAmount;
-                    }
-                    for (var x = 0; x < spawnAmount; x++)
-                    {
-                        var left = x % 2 == 0;
-                        var awayMulti = (x / 2) * diameter / 2;
-
-                        var newPos = SpawnPosition.position;
-                        newPos.z += awayMulti;
-
-                        newPos.x += left ? -1 * diameter / 2 : diameter / 2;
-
-                        Instantiate(enemyToSpawn, newPos, Quaternion.identity);
-                    }
-                }
+               StartCoroutine(SpawnBundle(bundle));
             }
         }
 

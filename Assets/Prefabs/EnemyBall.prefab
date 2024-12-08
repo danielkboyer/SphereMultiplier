@@ -126,6 +126,8 @@ MonoBehaviour:
   speed: -40
   maxSpeed: -2
   forceApplyTime: 0.1
+  fastMultiplier: 4
+  fastSpeedTime: 0.5
 --- !u!54 &2137597822811388401
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -165,6 +167,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9d3265ea9a522384998f00622aaffc3e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  Health_: 30
+  Id: 0
   Attack: 10
   AttackPerSecond: 0.1

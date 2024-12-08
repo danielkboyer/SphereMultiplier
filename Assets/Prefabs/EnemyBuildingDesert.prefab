@@ -785,8 +785,12 @@ MonoBehaviour:
   Enemy: {fileID: 93382896570416970, guid: 47d2cf3b7ef3b35409c08c56683cbcb5, type: 3}
   BigEnemy: {fileID: 93382896570416970, guid: 3da669daff183e84b9457625318637e6, type: 3}
   SpawnPosition: {fileID: 8639834308625921213}
+  TextSuccessColor: {r: 0, g: 0, b: 0, a: 0}
+  gameManager: {fileID: 0}
   buildingHealth: 200
   enemyBundles: []
+  SpawnRandomness: 0.75
+  delayTimePerEnemy: 0.05
   textMesh: {fileID: 4031985324983124276}
 --- !u!65 &2157125723372492859
 BoxCollider:

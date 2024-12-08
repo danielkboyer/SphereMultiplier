@@ -126,6 +126,8 @@ MonoBehaviour:
   speed: -200
   maxSpeed: -2
   forceApplyTime: 0.1
+  fastMultiplier: 4
+  fastSpeedTime: 0.5
 --- !u!54 &2137597822811388401
 Rigidbody:
   m_ObjectHideFlags: 0

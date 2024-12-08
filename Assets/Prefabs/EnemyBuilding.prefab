@@ -154,5 +154,12 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   Enemy: {fileID: 93382896570416970, guid: 47d2cf3b7ef3b35409c08c56683cbcb5, type: 3}
+  BigEnemy: {fileID: 0}
   SpawnPosition: {fileID: 5309648870881233651}
-  SpawnCD: 0.2
+  TextSuccessColor: {r: 0, g: 0, b: 0, a: 0}
+  gameManager: {fileID: 0}
+  buildingHealth: 1000
+  enemyBundles: []
+  SpawnRandomness: 0.5
+  delayTimePerEnemy: 0.05
+  textMesh: {fileID: 0}
