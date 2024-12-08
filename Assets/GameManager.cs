@@ -24,7 +24,11 @@ namespace Assets
         private float countdownTimer = 0;
         private bool gameOver = false;
 
+        private int startCoins = 0;
 
+
+        public float countDownSizeAdjustment = 50;
+        private float originalCountdownTextFontSize;
         public void OnNextClicked()
         {
             GameStorage.GetInstance().SetGameData(gameData);
@@ -33,10 +37,12 @@ namespace Assets
         private void Start()
         {
             gameData = GameStorage.GetInstance().GetGameData();
+            startCoins = gameData.Coins;
             Text.text = gameData.Coins.ToString();
             CountdownText.enabled = false;
             enemyBuildings = FindObjectsByType<EnemyBuilding>(FindObjectsSortMode.None).ToList();
             GoHomeScreen.SetActive(false);
+            originalCountdownTextFontSize = CountdownText.fontSize;
         }
 
         public void AddCoins(int coins)
@@ -63,12 +69,24 @@ namespace Assets
                     GoHomeScreen.SetActive(true);
                     enemyBuildings.ForEach(building => { building.textMesh.enabled = false; building.SetGameOver(); });
                     gameOver = true;
-                    homeScreenCoinText.text = this.gameData.Coins.ToString();
+                    homeScreenCoinText.text = (this.gameData.Coins - startCoins).ToString();
                     return;
 
                 }
 
-                CountdownText.text = Mathf.CeilToInt(CountdownTime - countdownTimer).ToString();
+                //Update text if different and animate the size
+                var newCountdownFloatText = CountdownTime - countdownTimer;
+                var newCountdownText = Mathf.CeilToInt(newCountdownFloatText);
+
+                if (CountdownText.text != newCountdownText.ToString()) {
+                    CountdownText.text = newCountdownText.ToString();
+                    CountdownText.fontSize = originalCountdownTextFontSize + countDownSizeAdjustment;
+                }
+                else
+                {
+                    var subtraction = (originalCountdownTextFontSize) * (newCountdownText - newCountdownFloatText);
+                    CountdownText.fontSize = originalCountdownTextFontSize - subtraction;
+                }
 
             }
         }
