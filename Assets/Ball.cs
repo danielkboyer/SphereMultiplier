@@ -30,12 +30,13 @@ public class Ball : MonoBehaviour
     {
         this.enemyBuildings = buildings;
     }
-    private void OnCollisionStay(Collision collision)
+
+    private void OnTriggerEnter(Collider other)
     {
-        var enemy = collision.gameObject.GetComponent<Enemy>();
-        if(enemy != null)
+        var enemy = other.gameObject.GetComponent<Enemy>();
+        if (enemy != null)
         {
-            var enemyHealth = collision.gameObject.GetComponent<Health>();
+            var enemyHealth = other.gameObject.GetComponent<Health>();
             var myHealth = GetComponent<Health>();
 
             enemyHealth.AttackEnemy(myHealth);
