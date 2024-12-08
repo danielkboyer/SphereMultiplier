@@ -1,4 +1,6 @@
 using System;
+using System.Collections;
+using System.Collections.Generic;
 using Assets.Scripts;
 using UnityEngine;
 
@@ -20,16 +22,20 @@ public class Health : MonoBehaviour
     private int _startingHealth;
     public int Attack = 10;
 
-
+    private Coroutine currentCoroutine;
     private float LastAttack = 0;
     public float AttackPerSecond = .1f;
     // Start is called once before the first execution of Update after the MonoBehaviour is created
-    Material material;
+    public Material material;
 
+
+    public Material flashMaterial;
+
+    private readonly Queue<IEnumerator> _queue = new Queue<IEnumerator>();
     void Awake()
     {
         var gameData = GameStorage.GetInstance().GetGameData();
-        switch(Id)
+        switch (Id)
         {
             case PlayerId.SmallEnemy:
                 Health_ = gameData.SmallEnemyHealth;
@@ -49,16 +55,42 @@ public class Health : MonoBehaviour
                 break;
         }
         _startingHealth = Health_;
-        material = this.gameObject.GetComponent<Renderer>().material; //notice, not shared material
 
+        this.gameObject.GetComponent<Renderer>().material = material;
+        StartCoroutine(FlashQueue());
     }
 
-    //invoke this function from anywhere outside or even from inside this particular script instance
-    public void Darken(float percent)
+
+    public IEnumerator FlashQueue()
     {
-        percent = Mathf.Clamp01(percent);
-        material.color = new Color(material.color.r * (1 - percent), material.color.g * (1 - percent), material.color.b * (1 - percent), material.color.a);
+        while (true)
+        {
+            if(_queue.Count == 0)
+            {
+                yield return new WaitForSeconds(.01f);
+            }
+            else
+            {
+                yield return StartCoroutine(_queue.Dequeue());
+                _queue.Clear();
+            }
+           
+        }
+
     }
+
+    public void StartFlash()
+    {
+        _queue.Enqueue(Flash());
+    }
+
+    public IEnumerator Flash()
+    {
+        this.gameObject.GetComponent<Renderer>().material = flashMaterial;
+        yield return new WaitForSeconds(.05f);
+        this.gameObject.GetComponent<Renderer>().material = material;
+    }
+
 
     private bool CanAttack()
     {
@@ -71,22 +103,24 @@ public class Health : MonoBehaviour
         {
             opp.Health_ -= Attack;
             var darken = (float)Attack / _startingHealth;
-            opp.Darken(darken);
+        
+            opp.StartFlash();
+            
             LastAttack = AttackPerSecond;
         }
- 
+
     }
 
-   
+
     // Update is called once per frame
     void Update()
     {
         LastAttack -= Time.deltaTime;
 
-        if(Health_ <= 0)
+        if (Health_ <= 0)
         {
             Destroy(this.gameObject);
         }
-        
+
     }
 }
