@@ -172,6 +172,8 @@ MonoBehaviour:
   Id: 3
   Attack: 30
   AttackPerSecond: 0.1
+  material: {fileID: 2100000, guid: 82f5012657f590e4a9ea649ca4dbe319, type: 2}
+  flashMaterial: {fileID: 2100000, guid: e660a302cd4c29b4f9dba494e35e186c, type: 2}
 --- !u!135 &1851152251507047515
 SphereCollider:
   m_ObjectHideFlags: 0

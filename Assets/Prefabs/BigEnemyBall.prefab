@@ -170,3 +170,5 @@ MonoBehaviour:
   Id: 1
   Attack: 25
   AttackPerSecond: 0.1
+  material: {fileID: 2100000, guid: 4b524fdbfaacd3a49913293aa4d18912, type: 2}
+  flashMaterial: {fileID: 2100000, guid: 872dec2bc12fe154e8dca14464457ab2, type: 2}
