@@ -58,6 +58,8 @@ public class EnemyBundle
 }
 public class EnemyBuilding : MonoBehaviour
 {
+
+    public bool AttractsBalls = true;
     public GameObject Enemy;
     public GameObject BigEnemy;
     public Transform SpawnPosition;
@@ -98,10 +100,11 @@ public class EnemyBuilding : MonoBehaviour
         {
            
             var health = other.GetComponent<Health>();
-            gameManager.OnBuildingAttacked(this,health);
+          
             buildingHealth -= health.Attack;
 
-            
+            gameManager.OnBuildingAttacked(this, health);
+
             textMesh.text = buildingHealth.ToString();
             if(buildingHealth < 0)
             {

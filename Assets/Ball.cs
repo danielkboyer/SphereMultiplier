@@ -13,7 +13,7 @@ public class Ball : MonoBehaviour
     public float fastSpeedTime = 1;
     public HashSet<int> portalIds = new HashSet<int>();
 
-    private Transform[] enemyBuildings;
+    private EnemyBuilding[] enemyBuildings;
     public float enemyBuildingAttractDistance;
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
@@ -22,14 +22,9 @@ public class Ball : MonoBehaviour
         var rigidBody = GetComponent<Rigidbody>();
         rigidBody.maxLinearVelocity = maxSpeed * fastMultiplier;
         rigidBody.linearVelocity = new Vector3(0, 0, maxSpeed * fastMultiplier);
-        enemyBuildings = FindObjectsByType<EnemyBuilding>(FindObjectsSortMode.None).Select(b=>b.gameObject.transform).ToArray();
+        enemyBuildings = FindObjectsByType<EnemyBuilding>(FindObjectsSortMode.None).ToArray();
     }
 
-
-    public void SetBuildings(Transform[] buildings)
-    {
-        this.enemyBuildings = buildings;
-    }
 
     private void OnTriggerEnter(Collider other)
     {
@@ -71,7 +66,7 @@ public class Ball : MonoBehaviour
 
             var distanceBetween = float.MaxValue;
             Transform enemyBuilding = null;
-            foreach (var building in enemyBuildings)
+            foreach (var building in enemyBuildings.Where(e=>e.AttractsBalls).Select(e=>e.transform))
             {
                 var distance = Vector3.Distance(building.transform.position, this.transform.position);
                 if(distance < distanceBetween)

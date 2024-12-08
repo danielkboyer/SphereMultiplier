@@ -49,11 +49,25 @@ namespace Assets
 
         public void OnBuildingAttacked(EnemyBuilding building, Health attacker)
         {
+
             if (building.IsDestroyed())
             {
+                if(!enemyBuildings.All(t => t.IsDestroyed()))
+                {
+                    building.AttractsBalls = false;
+                    Destroy(building.gameObject.GetComponent<Collider>());
+                }
+                else
+                {
+                    AddCoins(attacker.Attack);
+                }
                 return;
             }
-            AddCoins(attacker.Attack);
+            else
+            {
+                AddCoins(attacker.Attack);
+            }
+     
             
         }
         public void AddCoins(int coins)
