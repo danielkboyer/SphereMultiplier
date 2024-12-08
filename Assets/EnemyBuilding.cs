@@ -11,6 +11,8 @@ public class EnemyBundle
     public int bigAmount;
     public float spawnTime;
 
+    public float repeatingTime;
+
     //number of times to repeat, -1 means infinity
     public float spawnRepeat;
 
@@ -21,7 +23,18 @@ public class EnemyBundle
     public bool CanSpawn(float elapsed)
     {
         var elapsedMinusSpawn = elapsed - totalSpawningTime;
-        if (!spawnInProgress && elapsedMinusSpawn / spawnTime   > (spawnAmountSoFar+1) && (spawnRepeat > spawnAmountSoFar || spawnRepeat == -1))
+        if(spawnAmountSoFar == 0)
+        {
+            if (elapsedMinusSpawn / spawnTime > (spawnAmountSoFar + 1))
+            {
+                spawnAmountSoFar++;
+                return true;
+            }
+
+            return false;
+        }
+        elapsedMinusSpawn -= spawnTime;
+        if (!spawnInProgress && elapsedMinusSpawn / repeatingTime   > (spawnAmountSoFar+1) && (spawnRepeat > spawnAmountSoFar || spawnRepeat == -1))
         {
             spawnAmountSoFar++;
             return true;
@@ -107,7 +120,7 @@ public class EnemyBuilding : MonoBehaviour
         {
             var enemyToSpawn = Enemy;
             var spawnAmount = bundle.smallAmount;
-            if (y == 1)
+            if (y == 0)
             {
                 enemyToSpawn = BigEnemy;
                 spawnAmount = bundle.bigAmount;
