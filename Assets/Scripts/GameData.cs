@@ -19,7 +19,11 @@ namespace Assets.Scripts
         public int BigBallAttack;
         public int SmallEnemyAttack;
         public int BigEnemyAttack;
-        public GameData(int coins, float cannonFireRate, int smallBallHealth, int bigBallHealth, int smallEnemyHealth, int bigEnemyHealth, int smallBallAttack, int bigBallAttack, int smallEnemyAttack, int bigEnemyAttack)
+
+
+        public int Storage;
+        public int Level;
+        public GameData(int coins, float cannonFireRate, int smallBallHealth, int bigBallHealth, int smallEnemyHealth, int bigEnemyHealth, int smallBallAttack, int bigBallAttack, int smallEnemyAttack, int bigEnemyAttack, int level, int storage)
         {
             this.Coins = coins;
             CannonFireRate = cannonFireRate;
@@ -31,6 +35,8 @@ namespace Assets.Scripts
             BigBallAttack = bigBallAttack;
             SmallEnemyAttack = smallEnemyAttack;
             BigEnemyAttack = bigEnemyAttack;
+            Level = level;
+            Storage = storage;
         }
     }
 }

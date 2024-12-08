@@ -8,6 +8,7 @@ using UnityEngine;
 namespace Assets.Scripts
 {
 
+
     public class GameStorage
     {
         private static GameStorage INSTANCE;
@@ -22,6 +23,10 @@ namespace Assets.Scripts
         private const string BIG_BALL_ATTACK = "Big_Ball_Attack";
         private const string SMALL_ENEMY_ATTACK = "Small_Enemy_Attack";
         private const string BIG_ENEMY_ATTACK = "Big_Enemy_Attack";
+
+        private const string LEVEL = "Level";
+
+        private const string STORAGE = "Storage";
 
         private GameData data;
         public GameData GetGameData()
@@ -40,7 +45,10 @@ namespace Assets.Scripts
                 var smallEnemyAttack = PlayerPrefs.GetInt(SMALL_ENEMY_ATTACK, 10);
                 var bigEnemyAttack = PlayerPrefs.GetInt(BIG_ENEMY_ATTACK, 30);
 
-                data = new GameData(coins, cannonFireRate, smallBallHealth, bigBallHealth,smallEnemyHealth,bigEnemyHealth, smallBallAttack,bigBallAttack,smallEnemyAttack,bigEnemyAttack);
+                var level = PlayerPrefs.GetInt(LEVEL, 1);
+
+                var storage = PlayerPrefs.GetInt(STORAGE, 2000);
+                data = new GameData(coins, cannonFireRate, smallBallHealth, bigBallHealth,smallEnemyHealth,bigEnemyHealth, smallBallAttack,bigBallAttack,smallEnemyAttack,bigEnemyAttack, level, storage);
             }
             return data;
         }
@@ -59,6 +67,21 @@ namespace Assets.Scripts
                 return;
             }
             PlayerPrefs.SetInt(COIN_KEY, data.Coins);
+            PlayerPrefs.SetFloat(CANNON_FIRE_RATE, data.CannonFireRate);
+            PlayerPrefs.SetInt(SMALL_BALL_HEALTH, data.SmallBallHealth);
+            PlayerPrefs.SetInt(BIG_BALL_HEALTH, data.BigBallHealth);
+            PlayerPrefs.SetInt(SMALL_ENEMY_HEALTH, data.SmallEnemyHealth);
+            PlayerPrefs.SetInt(BIG_ENEMY_HEALTH, data.BigEnemyHealth);
+
+            PlayerPrefs.SetInt(SMALL_BALL_ATTACK, data.SmallBallAttack);
+            PlayerPrefs.SetInt(BIG_BALL_ATTACK, data.BigBallAttack);
+            PlayerPrefs.SetInt(SMALL_ENEMY_ATTACK, data.SmallEnemyAttack);
+            PlayerPrefs.SetInt(BIG_ENEMY_ATTACK, data.BigEnemyAttack);
+
+            PlayerPrefs.SetInt(LEVEL, data.Level);
+
+            PlayerPrefs.SetInt(STORAGE, data.Storage);
+
             PlayerPrefs.Save();
         }
 

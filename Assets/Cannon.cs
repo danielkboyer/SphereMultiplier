@@ -1,3 +1,4 @@
+using Assets.Scripts;
 using UnityEngine;
 
 public class Cannon : MonoBehaviour
@@ -32,6 +33,9 @@ public class Cannon : MonoBehaviour
     void Start()
     {
         UnityEngine.InputSystem.EnhancedTouch.TouchSimulation.Enable();
+
+        var gameData = GameStorage.GetInstance().GetGameData();
+        shotCooldown = gameData.CannonFireRate;
     }
 
 

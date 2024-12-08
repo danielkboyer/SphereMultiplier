@@ -1,7 +1,21 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using TMPro;
 using UnityEngine;
+
+
+
+[Serializable]
+public class MovingInfo
+{
+    public Transform to;
+    public Transform from;
+
+    public float speed = 2;
+
+    public bool enabled = false;
+}
 
 public class portal : MonoBehaviour
 {
@@ -11,9 +25,13 @@ public class portal : MonoBehaviour
     public float startMoveTime;
     public float totalMoveTime;
 
+
+    public MovingInfo MovingInfo;
     private int portalId;
 
     private Vector3 endPos;
+
+
 
     /*
      * 1 means double
@@ -76,7 +94,16 @@ public class portal : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-       
-       
+       if(MovingInfo != null && MovingInfo.enabled)
+        {
+            transform.position = Vector3.MoveTowards(transform.position, MovingInfo.to.position, MovingInfo.speed * Time.deltaTime);
+            if (transform.position == MovingInfo.to.position)
+            {
+                var temp = MovingInfo.to;
+                MovingInfo.to = MovingInfo.from;
+                MovingInfo.from = temp;
+            }
+        }
+
     }
 }

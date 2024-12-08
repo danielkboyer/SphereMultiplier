@@ -31,6 +31,7 @@ namespace Assets
         private float originalCountdownTextFontSize;
         public void OnNextClicked()
         {
+            gameData.Level++;
             GameStorage.GetInstance().SetGameData(gameData);
             SceneManager.LoadScene("MainMenu", LoadSceneMode.Single);
         }
@@ -47,7 +48,7 @@ namespace Assets
 
         public void AddCoins(int coins)
         {
-            this.gameData.Coins += coins;
+            this.gameData.Coins = Mathf.Min(coins + this.gameData.Coins, this.gameData.Storage);
             Text.text = this.gameData.Coins.ToString();
             
         }
