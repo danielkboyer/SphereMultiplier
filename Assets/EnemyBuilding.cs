@@ -34,7 +34,7 @@ public class EnemyBundle
             return false;
         }
         elapsedMinusSpawn -= spawnTime;
-        if (!spawnInProgress && elapsedMinusSpawn / repeatingTime   > (spawnAmountSoFar+1) && (spawnRepeat > spawnAmountSoFar || spawnRepeat == -1))
+        if (!spawnInProgress && (elapsedMinusSpawn / repeatingTime) + 1   > (spawnAmountSoFar+1) && (spawnRepeat > spawnAmountSoFar || spawnRepeat == -1))
         {
             spawnAmountSoFar++;
             return true;
