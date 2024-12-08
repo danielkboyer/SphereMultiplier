@@ -359,6 +359,7 @@ MonoBehaviour:
   GoHomeScreen: {fileID: 6736059}
   homeScreenCoinText: {fileID: 1538831646}
   CountdownTime: 4
+  countDownSizeAdjustment: 5
 --- !u!1001 &95027407
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -436,6 +437,10 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 57582777090672226, guid: 5bae7446a50c7394bb3d0b43d24d80de, type: 3}
+      propertyPath: 'm_Materials.Array.data[0]'
+      value: 
+      objectReference: {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
     - target: {fileID: 1313797184198960363, guid: 5bae7446a50c7394bb3d0b43d24d80de, type: 3}
       propertyPath: 'm_Materials.Array.data[0]'
       value: 
@@ -1876,6 +1881,10 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 57582777090672226, guid: 5bae7446a50c7394bb3d0b43d24d80de, type: 3}
+      propertyPath: 'm_Materials.Array.data[0]'
+      value: 
+      objectReference: {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
     - target: {fileID: 2587107224933931699, guid: 5bae7446a50c7394bb3d0b43d24d80de, type: 3}
       propertyPath: m_Pivot.x
       value: 0.5
@@ -3220,6 +3229,10 @@ PrefabInstance:
       propertyPath: m_fontSizeBase
       value: 26
       objectReference: {fileID: 0}
+    - target: {fileID: 4435986969858509658, guid: 7e2a61b7a00009846ab1998dd71b000b, type: 3}
+      propertyPath: 'm_Materials.Array.data[0]'
+      value: 
+      objectReference: {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
     - target: {fileID: 6153385456926730355, guid: 7e2a61b7a00009846ab1998dd71b000b, type: 3}
       propertyPath: m_Name
       value: EnemyBuildingDesert
@@ -4165,6 +4178,14 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 3699167264804217830, guid: 93fe9d424f1d76d4aaa9b4894accf235, type: 3}
+      propertyPath: pushWallTrigger
+      value: 
+      objectReference: {fileID: 1549030595}
+    - target: {fileID: 3819326952019244601, guid: 93fe9d424f1d76d4aaa9b4894accf235, type: 3}
+      propertyPath: 'm_Materials.Array.data[0]'
+      value: 
+      objectReference: {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
     - target: {fileID: 8759522813813136036, guid: 93fe9d424f1d76d4aaa9b4894accf235, type: 3}
       propertyPath: m_Name
       value: PushWall

@@ -1,9 +1,22 @@
+using System;
+using Assets.Scripts;
 using UnityEngine;
+
+public enum PlayerId
+{
+    SmallEnemy,
+    BigEnemy,
+    SmallBall,
+    BigBall,
+}
 
 public class Health : MonoBehaviour
 {
 
-    public int Health_ = 100;
+
+
+    public PlayerId Id;
+    private int Health_ = 100;
     private int _startingHealth;
     public int Attack = 10;
 
@@ -15,6 +28,26 @@ public class Health : MonoBehaviour
 
     void Awake()
     {
+        var gameData = GameStorage.GetInstance().GetGameData();
+        switch(Id)
+        {
+            case PlayerId.SmallEnemy:
+                Health_ = gameData.SmallEnemyHealth;
+                Attack = gameData.SmallEnemyAttack;
+                break;
+            case PlayerId.BigEnemy:
+                Health_ = gameData.BigEnemyHealth;
+                Attack = gameData.BigEnemyAttack;
+                break;
+            case PlayerId.SmallBall:
+                Health_ = gameData.SmallBallHealth;
+                Attack = gameData.SmallBallAttack;
+                break;
+            case PlayerId.BigBall:
+                Health_ = gameData.BigBallHealth;
+                Attack = gameData.BigBallAttack;
+                break;
+        }
         _startingHealth = Health_;
         material = this.gameObject.GetComponent<Renderer>().material; //notice, not shared material
     }

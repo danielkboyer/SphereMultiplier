@@ -12,6 +12,16 @@ namespace Assets.Scripts
     {
         private static GameStorage INSTANCE;
         private const string COIN_KEY = "Coins";
+        private const string CANNON_FIRE_RATE = "Cannon_Fire_Rate";
+        private const string SMALL_BALL_HEALTH = "Small_Ball_Health";
+        private const string BIG_BALL_HEALTH = "Big_Ball_Health";
+        private const string SMALL_ENEMY_HEALTH = "Small_Enemy_Health";
+        private const string BIG_ENEMY_HEALTH = "Big_Enemy_Health";
+
+        private const string SMALL_BALL_ATTACK = "Small_Ball_Attack";
+        private const string BIG_BALL_ATTACK = "Big_Ball_Attack";
+        private const string SMALL_ENEMY_ATTACK = "Small_Enemy_Attack";
+        private const string BIG_ENEMY_ATTACK = "Big_Enemy_Attack";
 
         private GameData data;
         public GameData GetGameData()
@@ -19,7 +29,18 @@ namespace Assets.Scripts
             if (data == null)
             {
                 var coins = PlayerPrefs.GetInt(COIN_KEY, 0);
-                data = new GameData(coins);
+                var cannonFireRate = PlayerPrefs.GetFloat(CANNON_FIRE_RATE, 1.5f);
+                var smallBallHealth = PlayerPrefs.GetInt(SMALL_BALL_HEALTH, 30);
+                var bigBallHealth = PlayerPrefs.GetInt(BIG_BALL_HEALTH, 120);
+                var smallEnemyHealth = PlayerPrefs.GetInt(SMALL_ENEMY_HEALTH, 30);
+                var bigEnemyHealth = PlayerPrefs.GetInt(BIG_ENEMY_HEALTH, 120);
+
+                var smallBallAttack = PlayerPrefs.GetInt(SMALL_BALL_ATTACK, 10);
+                var bigBallAttack = PlayerPrefs.GetInt(BIG_BALL_ATTACK, 30);
+                var smallEnemyAttack = PlayerPrefs.GetInt(SMALL_ENEMY_ATTACK, 10);
+                var bigEnemyAttack = PlayerPrefs.GetInt(BIG_ENEMY_ATTACK, 30);
+
+                data = new GameData(coins, cannonFireRate, smallBallHealth, bigBallHealth,smallEnemyHealth,bigEnemyHealth, smallBallAttack,bigBallAttack,smallEnemyAttack,bigEnemyAttack);
             }
             return data;
         }
