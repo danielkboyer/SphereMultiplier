@@ -50,6 +50,7 @@ public class Health : MonoBehaviour
         }
         _startingHealth = Health_;
         material = this.gameObject.GetComponent<Renderer>().material; //notice, not shared material
+
     }
 
     //invoke this function from anywhere outside or even from inside this particular script instance
