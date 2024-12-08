@@ -12,10 +12,13 @@ namespace Assets
 {
     public class GameManager : MonoBehaviour
     {
+        public Camera MainCamera;
 
         public GameData gameData;
         public TextMeshProUGUI Text;
         public TextMeshProUGUI CountdownText;
+
+        public GameObject Explosion;
         private List<EnemyBuilding> enemyBuildings;
 
         public GameObject GoHomeScreen;
@@ -23,6 +26,8 @@ namespace Assets
         public float CountdownTime = 4.99f;
         private float countdownTimer = 0;
         private bool gameOver = false;
+
+
 
         private int startCoins = 0;
 
@@ -56,10 +61,14 @@ namespace Assets
                 {
                     building.AttractsBalls = false;
                     enemyBuildings.Remove(building);
+                    var bombExplosion = building.transform.position;
+                    bombExplosion.y += 3;
+                    Instantiate(Explosion, bombExplosion, Quaternion.identity);
                     Destroy(building.gameObject);
                 }
                 else
                 {
+
                     AddCoins(attacker.Attack);
                 }
                 return;
@@ -98,6 +107,14 @@ namespace Assets
                     homeScreenCoinText.text = (this.gameData.Coins - startCoins).ToString();
                     return;
 
+                }
+
+                //Lerp camera towards last building
+                var lastBuilding = enemyBuildings.FirstOrDefault(t => t.AttractsBalls);
+                if(lastBuilding != null)
+                {
+                    var target = new Vector3(lastBuilding.transform.position.x, MainCamera.transform.position.y, lastBuilding.transform.position.z - 10);
+                    MainCamera.transform.position = Vector3.Lerp(MainCamera.transform.position, target, Time.deltaTime);
                 }
 
                 //Update text if different and animate the size

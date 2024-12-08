@@ -292,6 +292,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   Text: {fileID: 2587886631063051166}
   CountdownText: {fileID: 1740823038159185334}
+  Explosion: {fileID: 1546897667432260974, guid: 9e8fbbdbe7487924fb7c07a7087dfc20, type: 3}
   GoHomeScreen: {fileID: 1784874351564495319}
   homeScreenCoinText: {fileID: 3981747811092591945}
   CountdownTime: 4
