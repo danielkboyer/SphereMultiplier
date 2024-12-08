@@ -55,7 +55,8 @@ namespace Assets
                 if(!enemyBuildings.All(t => t.IsDestroyed()))
                 {
                     building.AttractsBalls = false;
-                    Destroy(building.gameObject.GetComponent<Collider>());
+                    enemyBuildings.Remove(building);
+                    Destroy(building.gameObject);
                 }
                 else
                 {

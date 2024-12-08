@@ -66,7 +66,7 @@ public class Ball : MonoBehaviour
 
             var distanceBetween = float.MaxValue;
             Transform enemyBuilding = null;
-            foreach (var building in enemyBuildings.Where(e=>e.AttractsBalls).Select(e=>e.transform))
+            foreach (var building in enemyBuildings.Where(e=> e!= null && e.AttractsBalls).Select(e=>e.transform))
             {
                 var distance = Vector3.Distance(building.transform.position, this.transform.position);
                 if(distance < distanceBetween)
