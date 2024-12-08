@@ -1525,6 +1525,10 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 35466709}
     - target: {fileID: 8006517476999565081, guid: 7e2a61b7a00009846ab1998dd71b000b, type: 3}
+      propertyPath: buildingHealth
+      value: 500
+      objectReference: {fileID: 0}
+    - target: {fileID: 8006517476999565081, guid: 7e2a61b7a00009846ab1998dd71b000b, type: 3}
       propertyPath: TextSuccessColor.a
       value: 1
       objectReference: {fileID: 0}

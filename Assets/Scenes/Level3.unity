@@ -2047,6 +2047,10 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 0}
     - target: {fileID: 8006517476999565081, guid: 7e2a61b7a00009846ab1998dd71b000b, type: 3}
+      propertyPath: buildingHealth
+      value: 500
+      objectReference: {fileID: 0}
+    - target: {fileID: 8006517476999565081, guid: 7e2a61b7a00009846ab1998dd71b000b, type: 3}
       propertyPath: SpawnRandomness
       value: 0.75
       objectReference: {fileID: 0}

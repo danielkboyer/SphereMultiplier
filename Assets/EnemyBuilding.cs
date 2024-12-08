@@ -58,6 +58,8 @@ public class EnemyBundle
 }
 public class EnemyBuilding : MonoBehaviour
 {
+
+    public bool AttractsBalls = true;
     public GameObject Enemy;
     public GameObject BigEnemy;
     public Transform SpawnPosition;
@@ -86,29 +88,30 @@ public class EnemyBuilding : MonoBehaviour
     {
         gameOver = true;
     }
-    private void OnTriggerEnter(Collider other)
+    private void OnCollisionEnter(Collision collision)
     {
         if (gameOver)
         {
             return;
         }
-        var ball = other.GetComponent<Ball>();
+        var ball = collision.gameObject.GetComponent<Ball>();
 
-        if(ball != null)
+        if (ball != null)
         {
-           
-            var health = other.GetComponent<Health>();
-            gameManager.OnBuildingAttacked(this,health);
+
+            var health = collision.gameObject.GetComponent<Health>();
+
             buildingHealth -= health.Attack;
 
-            
+            gameManager.OnBuildingAttacked(this, health);
+
             textMesh.text = buildingHealth.ToString();
-            if(buildingHealth < 0)
+            if (buildingHealth < 0)
             {
                 textMesh.color = TextSuccessColor;
                 textMesh.text = (buildingHealth * -1).ToString();
             }
-            Destroy(other.gameObject);
+            Destroy(collision.gameObject);
         }
     }
 
@@ -152,8 +155,6 @@ public class EnemyBuilding : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-     
-
         if (IsDestroyed() || gameOver)
         {
             return;

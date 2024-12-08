@@ -782,11 +782,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 45b92a2e928749b4ca04c9f66c0fd522, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  AttractsBalls: 1
   Enemy: {fileID: 93382896570416970, guid: 47d2cf3b7ef3b35409c08c56683cbcb5, type: 3}
   BigEnemy: {fileID: 93382896570416970, guid: 3da669daff183e84b9457625318637e6, type: 3}
   SpawnPosition: {fileID: 8639834308625921213}
   TextSuccessColor: {r: 0, g: 0, b: 0, a: 0}
-  gameManager: {fileID: 0}
   buildingHealth: 200
   enemyBundles: []
   SpawnRandomness: 0.75
@@ -807,7 +807,7 @@ BoxCollider:
     serializedVersion: 2
     m_Bits: 0
   m_LayerOverridePriority: 0
-  m_IsTrigger: 1
+  m_IsTrigger: 0
   m_ProvidesContacts: 0
   m_Enabled: 1
   serializedVersion: 3
