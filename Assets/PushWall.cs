@@ -5,7 +5,6 @@ public class PushWall : MonoBehaviour
 {
     public Transform pushWallTrigger;
     public TextMeshPro text;
-
     private float startDistance;
 
     private bool stopCalculating = false;
@@ -17,9 +16,9 @@ public class PushWall : MonoBehaviour
     {
       
         text.text = "0%";
-        var renderer = GetComponent<MeshRenderer>();
-        zWidth = renderer.bounds.size.z/2;
+        zWidth = GetComponent<Collider>().bounds.size.z/2;
         startDistance = GetZDistance();
+        text.transform.parent = this.transform;
     }
 
     private float GetZDistance()
