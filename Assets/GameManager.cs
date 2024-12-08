@@ -46,6 +46,16 @@ namespace Assets
             originalCountdownTextFontSize = CountdownText.fontSize;
         }
 
+
+        public void OnBuildingAttacked(EnemyBuilding building, Health attacker)
+        {
+            if (building.IsDestroyed())
+            {
+                return;
+            }
+            AddCoins(attacker.Attack);
+            
+        }
         public void AddCoins(int coins)
         {
             this.gameData.Coins = Mathf.Min(coins + this.gameData.Coins, this.gameData.Storage);
