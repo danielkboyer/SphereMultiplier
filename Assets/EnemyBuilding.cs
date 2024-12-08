@@ -96,9 +96,10 @@ public class EnemyBuilding : MonoBehaviour
 
         if(ball != null)
         {
+           
             var health = other.GetComponent<Health>();
+            gameManager.OnBuildingAttacked(this,health);
             buildingHealth -= health.Attack;
-            gameManager.AddCoins(health.Attack);
 
             
             textMesh.text = buildingHealth.ToString();

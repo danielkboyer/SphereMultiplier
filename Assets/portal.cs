@@ -46,7 +46,7 @@ public class portal : MonoBehaviour
             StartCoroutine(WaitAndMove(startMoveTime));
         }
         portalId = GetInstanceID();
-        var textPro = gameObject.GetComponent<TextMeshPro>();
+        var textPro = gameObject.GetComponentInChildren<TextMeshPro>();
         textPro.text = "X" + newBallMultiplier;
     }
 
