@@ -898,7 +898,7 @@ MonoBehaviour:
   CoinSpawnPos: {fileID: 2957430213449949455}
   BigEnemy: {fileID: 93382896570416970, guid: 3da669daff183e84b9457625318637e6, type: 3}
   SpawnPosition: {fileID: 6495609349556411302}
-  TextSuccessColor: {r: 0, g: 0, b: 0, a: 0}
+  TextSuccessColor: {r: 0.9137255, g: 0.8745098, b: 0.47843137, a: 0}
   buildingHealth: 2000
   enemyBundles: []
   SpawnRandomness: 0.75

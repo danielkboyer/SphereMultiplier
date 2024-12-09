@@ -1,9 +1,12 @@
 using Assets.Scripts;
+using System.Linq;
+using TMPro;
 using UnityEngine;
 
 public class Cannon : MonoBehaviour
 {
 
+    public Animator CannonAnimator;
     private float? touchStartPos = null;
     private float? cannonStartPos = null;
     public Transform maxX;
@@ -21,6 +24,11 @@ public class Cannon : MonoBehaviour
     public int shootAmount = 3;
     private int currentShotAmount = 0;
 
+    public TextMeshPro TutorialText;
+    public float whenToShowShoot = 2;
+    public float whenToShowBigBall = .5f;
+    private float lastTimeTouched = 0;
+    private float canShootBigBallTime = 0;
     public GameObject ball;
     public GameObject bigBall;
     public Transform ballShootPosition;
@@ -29,6 +37,10 @@ public class Cannon : MonoBehaviour
     public SpriteRenderer barFill;
     public Color barFillColor;
     public Color barFullColor;
+    public Color cannonBarFullColor;
+
+    public Renderer[] ChangeRenderers;
+    private Color[] originalMaterials;
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
@@ -36,6 +48,8 @@ public class Cannon : MonoBehaviour
 
         var gameData = GameStorage.GetInstance().GetGameData();
         shotCooldown = gameData.CannonFireRate;
+        CannonAnimator.SetFloat("ShootTime", 1/timeBetweenBullets);
+        originalMaterials = ChangeRenderers.Select(t=>new Color(t.material.color.r,t.material.color.g,t.material.color.b,t.material.color.a)).ToArray();
     }
 
 
@@ -44,34 +58,59 @@ public class Cannon : MonoBehaviour
     {
         return bigBallTimeCurrent >= bigBallTime;
     }
+
+    void ChangeMaterial(Color? color)
+    {
+       
+
+        for(int i = 0; i < ChangeRenderers.Length; i++)
+        {
+            if (color == null)
+            {
+                ChangeRenderers[i].material.color = originalMaterials[i];
+            }
+            else
+            {
+                ChangeRenderers[i].material.color = color.Value;
+            }
+        }
+    }
     void ShootBig(bool isTouching)
     {
         if (isTouching)
         {
             bigBallTimeCurrent += Time.deltaTime;
 
-         
+
 
             Touch touch = Input.GetTouch(0);
             if (touch.phase == TouchPhase.Ended)
             {
                 if (CanShootBigBall())
                 {
+                    CannonAnimator.SetTrigger("Shoot");
+                    ChangeMaterial(null);
                     bigBallTimeCurrent = 0;
                     Instantiate(bigBall, ballShootPosition.position, Quaternion.identity);
                 }
             }
-               
-             
-            
+
+
+
+        }
+        else
+        {
+            canShootBigBallTime = 0;
         }
 
         var percentage = bigBallTimeCurrent / bigBallTime;
         barFill.color = barFillColor;
         if (CanShootBigBall())
         {
+            canShootBigBallTime += Time.deltaTime;
             barFill.color = barFullColor;
             percentage = 1;
+            ChangeMaterial(cannonBarFullColor);
         }
         mask.localScale = new Vector3(mask.localScale.x, percentage, mask.localScale.z);
 
@@ -81,15 +120,16 @@ public class Cannon : MonoBehaviour
     {
         var timePassed = Time.deltaTime;
 
-       
-      
+
+
         if (isShooting)
         {
             lastBulletTime -= timePassed;
             if (lastBulletTime <= 0)
             {
+                CannonAnimator.SetTrigger("Shoot");
                 Instantiate(ball, ballShootPosition.position, Quaternion.identity);
-      
+
                 lastBulletTime = timeBetweenBullets;
                 currentShotAmount++;
 
@@ -99,28 +139,31 @@ public class Cannon : MonoBehaviour
                     isShooting = false;
                 }
             }
-           
+
             return;
 
         }
 
         shotWaitTime -= timePassed;
-        if (shotWaitTime <= 0  && isTouching)
+        if (shotWaitTime <= 0 && isTouching)
         {
+         
             shotWaitTime = shotCooldown;
+            CannonAnimator.SetTrigger("Shoot");
             Instantiate(ball, ballShootPosition.position, Quaternion.identity);
             lastBulletTime = timeBetweenBullets;
             currentShotAmount = 1;
             isShooting = true;
-            
+
         }
-      
+
     }
 
     void HandleTouch()
     {
         if (Input.touchCount > 0)
         {
+            lastTimeTouched = 0;
             Touch touch = Input.GetTouch(0);
 
             if (touch.phase == TouchPhase.Began)
@@ -145,9 +188,23 @@ public class Cannon : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        lastTimeTouched += Time.deltaTime;
         HandleTouch();
         Shoot(Input.touchCount > 0);
         ShootBig(Input.touchCount > 0);
+
+        if (lastTimeTouched > whenToShowShoot)
+        {
+            TutorialText.text = "Hold to shoot";
+        }
+        else if (canShootBigBallTime > whenToShowBigBall && CanShootBigBall())
+        {
+            TutorialText.text = "Release for Big Ball!";
+        }
+        else
+        {
+            TutorialText.text = "";
+        }
     }
 
 }

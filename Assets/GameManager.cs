@@ -74,7 +74,8 @@ namespace Assets
                     for (var i = 0; i < coinSpawnAmount; i++)
                     {
                         var coin = Instantiate(Coin, building.CoinSpawnPos.position, Quaternion.identity);
-                        coin.GetComponent<Rigidbody>().AddForce(new Vector3(UnityEngine.Random.Range(-1.0f, 1.0f) * 30, UnityEngine.Random.Range(1.0f, 10.0f) * 70, UnityEngine.Random.Range(-1.0f, 1.0f) * 30));
+                        coin.GetComponent<Rigidbody>().AddForce(new Vector3(UnityEngine.Random.Range(-1.0f, 1.0f) * 70, UnityEngine.Random.Range(1.0f, 10.0f) * 70, UnityEngine.Random.Range(-1.0f, 1.0f) * 70));
+                        coin.transform.Rotate(UnityEngine.Random.Range(0, 360), UnityEngine.Random.Range(0, 360), UnityEngine.Random.Range(0, 360));
                     }
 
                     AddCoins(attacker.Attack);
@@ -121,7 +122,7 @@ namespace Assets
                 var lastBuilding = enemyBuildings.FirstOrDefault(t => t.AttractsBalls);
                 if(lastBuilding != null)
                 {
-                    var target = new Vector3(lastBuilding.transform.position.x, MainCamera.transform.position.y, lastBuilding.transform.position.z - 10);
+                    var target = new Vector3(lastBuilding.transform.position.x, MainCamera.transform.position.y, lastBuilding.transform.position.z - 18);
                     MainCamera.transform.position = Vector3.Lerp(MainCamera.transform.position, target, Time.deltaTime);
                 }
 
@@ -132,6 +133,10 @@ namespace Assets
                 if (CountdownText.text != newCountdownText.ToString()) {
                     CountdownText.text = newCountdownText.ToString();
                     CountdownText.fontSize = originalCountdownTextFontSize + countDownSizeAdjustment;
+                    CountdownText.gameObject.transform.rotation = Quaternion.identity;
+                    //Rotate the text z axis randomly a little bit.
+                    CountdownText.gameObject.transform.Rotate(new Vector3(0, 0, UnityEngine.Random.Range(-12, 12)));
+                    
                 }
                 else
                 {
