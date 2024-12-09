@@ -14,6 +14,7 @@ namespace Assets
     {
         public Camera MainCamera;
 
+        public GameObject Coin;
         public GameData gameData;
         public TextMeshProUGUI Text;
         public TextMeshProUGUI CountdownText;
@@ -49,6 +50,7 @@ namespace Assets
             enemyBuildings = FindObjectsByType<EnemyBuilding>(FindObjectsSortMode.None).ToList();
             GoHomeScreen.SetActive(false);
             originalCountdownTextFontSize = CountdownText.fontSize;
+            Coin.GetComponent<Collider>().enabled = false;
         }
 
 
@@ -68,6 +70,12 @@ namespace Assets
                 }
                 else
                 {
+                    var coinSpawnAmount = Mathf.FloorToInt(attacker.Attack / 10);
+                    for (var i = 0; i < coinSpawnAmount; i++)
+                    {
+                        var coin = Instantiate(Coin, building.CoinSpawnPos.position, Quaternion.identity);
+                        coin.GetComponent<Rigidbody>().AddForce(new Vector3(UnityEngine.Random.Range(-1.0f, 1.0f) * 30, UnityEngine.Random.Range(1.0f, 10.0f) * 70, UnityEngine.Random.Range(-1.0f, 1.0f) * 30));
+                    }
 
                     AddCoins(attacker.Attack);
                 }

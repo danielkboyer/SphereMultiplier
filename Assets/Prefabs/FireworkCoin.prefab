@@ -1,6 +1,6 @@
 %YAML 1.1
 %TAG !u! tag:unity3d.com,2011:
---- !u!1001 &1463332144056939156
+--- !u!1001 &1190807438836015958
 PrefabInstance:
   m_ObjectHideFlags: 0
   serializedVersion: 2
@@ -22,15 +22,15 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: 6c78bb3e52c717d47a297f77cf5055d9, type: 3}
       propertyPath: m_LocalPosition.x
-      value: 0.123702854
+      value: 3.2677279
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: 6c78bb3e52c717d47a297f77cf5055d9, type: 3}
       propertyPath: m_LocalPosition.y
-      value: 3.95
+      value: -0.19999878
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: 6c78bb3e52c717d47a297f77cf5055d9, type: 3}
       propertyPath: m_LocalPosition.z
-      value: -0.084
+      value: -13.908986
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: 6c78bb3e52c717d47a297f77cf5055d9, type: 3}
       propertyPath: m_LocalRotation.w
@@ -66,7 +66,7 @@ PrefabInstance:
       objectReference: {fileID: 2100000, guid: 40b13185160cbe341a20c03b700dd12f, type: 2}
     - target: {fileID: 919132149155446097, guid: 6c78bb3e52c717d47a297f77cf5055d9, type: 3}
       propertyPath: m_Name
-      value: Coin
+      value: FireworkCoin
       objectReference: {fileID: 0}
     - target: {fileID: 919132149155446097, guid: 6c78bb3e52c717d47a297f77cf5055d9, type: 3}
       propertyPath: m_TagString
@@ -78,23 +78,26 @@ PrefabInstance:
     m_AddedComponents:
     - targetCorrespondingSourceObject: {fileID: 919132149155446097, guid: 6c78bb3e52c717d47a297f77cf5055d9, type: 3}
       insertIndex: -1
-      addedObject: {fileID: 1586404168660941222}
+      addedObject: {fileID: 7265776307627882895}
     - targetCorrespondingSourceObject: {fileID: 919132149155446097, guid: 6c78bb3e52c717d47a297f77cf5055d9, type: 3}
       insertIndex: -1
-      addedObject: {fileID: 7284629602712343578}
+      addedObject: {fileID: 7359340283995779875}
+    - targetCorrespondingSourceObject: {fileID: 919132149155446097, guid: 6c78bb3e52c717d47a297f77cf5055d9, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 9014554426967058640}
   m_SourcePrefab: {fileID: 100100000, guid: 6c78bb3e52c717d47a297f77cf5055d9, type: 3}
---- !u!1 &1769814619991412677 stripped
+--- !u!1 &2037862199522467335 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 919132149155446097, guid: 6c78bb3e52c717d47a297f77cf5055d9, type: 3}
-  m_PrefabInstance: {fileID: 1463332144056939156}
+  m_PrefabInstance: {fileID: 1190807438836015958}
   m_PrefabAsset: {fileID: 0}
---- !u!64 &1586404168660941222
+--- !u!64 &7265776307627882895
 MeshCollider:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1769814619991412677}
+  m_GameObject: {fileID: 2037862199522467335}
   m_Material: {fileID: 0}
   m_IncludeLayers:
     serializedVersion: 2
@@ -110,13 +113,13 @@ MeshCollider:
   m_Convex: 1
   m_CookingOptions: 30
   m_Mesh: {fileID: -951608786083511892, guid: 6c78bb3e52c717d47a297f77cf5055d9, type: 3}
---- !u!54 &7284629602712343578
+--- !u!54 &7359340283995779875
 Rigidbody:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1769814619991412677}
+  m_GameObject: {fileID: 2037862199522467335}
   serializedVersion: 4
   m_Mass: 1
   m_Drag: 0
@@ -137,3 +140,17 @@ Rigidbody:
   m_Interpolate: 0
   m_Constraints: 0
   m_CollisionDetection: 0
+--- !u!114 &9014554426967058640
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2037862199522467335}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0b01c10125fc62442b91c27ba45c5bd6, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  DestroyTime: 0.9
+  Firework: {fileID: 1546897667432260974, guid: 9e8fbbdbe7487924fb7c07a7087dfc20, type: 3}

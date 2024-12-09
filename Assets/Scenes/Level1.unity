@@ -1345,7 +1345,7 @@ PrefabInstance:
     - target: {fileID: 4435986969858509658, guid: 7e2a61b7a00009846ab1998dd71b000b, type: 3}
       propertyPath: 'm_Materials.Array.data[0]'
       value: 
-      objectReference: {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
+      objectReference: {fileID: 2147374, guid: 0161d805a3764c089bef00bfe00793f5, type: 2}
     - target: {fileID: 6153385456926730355, guid: 7e2a61b7a00009846ab1998dd71b000b, type: 3}
       propertyPath: m_Name
       value: EnemyBuildingDesert
@@ -1802,7 +1802,7 @@ PrefabInstance:
     - target: {fileID: 3819326952019244601, guid: 93fe9d424f1d76d4aaa9b4894accf235, type: 3}
       propertyPath: 'm_Materials.Array.data[0]'
       value: 
-      objectReference: {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
+      objectReference: {fileID: 2164040, guid: 5302535af1044152a457ed104f1f4b91, type: 2}
     - target: {fileID: 8759522813813136036, guid: 93fe9d424f1d76d4aaa9b4894accf235, type: 3}
       propertyPath: m_Name
       value: PushWall

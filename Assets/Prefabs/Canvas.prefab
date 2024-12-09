@@ -290,6 +290,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 35392d31bafc5f941b98ecb2660bcedf, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  MainCamera: {fileID: 0}
+  Coin: {fileID: 2037862199522467335, guid: c5edcfb94e3e540498be1aa11f0412f8, type: 3}
   Text: {fileID: 2587886631063051166}
   CountdownText: {fileID: 1740823038159185334}
   Explosion: {fileID: 1546897667432260974, guid: 9e8fbbdbe7487924fb7c07a7087dfc20, type: 3}

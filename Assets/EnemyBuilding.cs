@@ -61,6 +61,7 @@ public class EnemyBuilding : MonoBehaviour
 
     public bool AttractsBalls = true;
     public GameObject Enemy;
+    public Transform CoinSpawnPos;
     public GameObject BigEnemy;
     public Transform SpawnPosition;
     public Color TextSuccessColor;

@@ -375,6 +375,37 @@ MeshRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_AdditionalVertexStreams: {fileID: 0}
+--- !u!1 &6618187148871516246
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 2957430213449949455}
+  m_Layer: 0
+  m_Name: CoinSpawn
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &2957430213449949455
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6618187148871516246}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0.37, y: 7.18, z: -0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 7575360795841827577}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &6636900907701061369
 GameObject:
   m_ObjectHideFlags: 0
@@ -847,6 +878,7 @@ Transform:
   - {fileID: 6678638896000075130}
   - {fileID: 4750405318970953551}
   - {fileID: 6495609349556411302}
+  - {fileID: 2957430213449949455}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 270, z: -8.304}
 --- !u!114 &9001028069883739793
@@ -861,14 +893,16 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 45b92a2e928749b4ca04c9f66c0fd522, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  Enemy: {fileID: 0}
-  BigEnemy: {fileID: 0}
-  SpawnPosition: {fileID: 0}
+  AttractsBalls: 1
+  Enemy: {fileID: 93382896570416970, guid: 47d2cf3b7ef3b35409c08c56683cbcb5, type: 3}
+  CoinSpawnPos: {fileID: 2957430213449949455}
+  BigEnemy: {fileID: 93382896570416970, guid: 3da669daff183e84b9457625318637e6, type: 3}
+  SpawnPosition: {fileID: 6495609349556411302}
   TextSuccessColor: {r: 0, g: 0, b: 0, a: 0}
   buildingHealth: 2000
   enemyBundles: []
-  SpawnRandomness: 0.5
-  delayTimePerEnemy: 0.1
+  SpawnRandomness: 0.75
+  delayTimePerEnemy: 0.05
   textMesh: {fileID: 8996744864661510808}
 --- !u!65 &8055229728549351064
 BoxCollider:
