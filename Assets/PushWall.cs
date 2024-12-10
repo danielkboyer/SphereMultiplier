@@ -37,7 +37,7 @@ public class PushWall : MonoBehaviour
             percentage = newPercentage;
             text.text = percentage.ToString() + "%";
         }
-        if (newPercentage == 100)
+        if (Mathf.Abs(newPercentage) == 100)
         {
             stopCalculating = true;
         }
