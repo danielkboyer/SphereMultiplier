@@ -44,7 +44,7 @@ public class Cannon : MonoBehaviour
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
-        UnityEngine.InputSystem.EnhancedTouch.TouchSimulation.Enable();
+        //UnityEngine.InputSystem.EnhancedTouch.TouchSimulation.Enable();
 
         var gameData = GameStorage.GetInstance().GetGameData();
         shotCooldown = gameData.CannonFireRate;

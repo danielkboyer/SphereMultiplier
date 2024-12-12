@@ -1247,7 +1247,7 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 2688399174742422318, guid: 61425efae71a3cf43935a6822ab97a61, type: 3}
   m_PrefabInstance: {fileID: 3975577874095071393}
   m_PrefabAsset: {fileID: 0}
---- !u!1 &1566131425
+--- !u!1 &1620599561
 GameObject:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -1255,9 +1255,9 @@ GameObject:
   m_PrefabAsset: {fileID: 0}
   serializedVersion: 6
   m_Component:
-  - component: {fileID: 1566131428}
-  - component: {fileID: 1566131427}
-  - component: {fileID: 1566131426}
+  - component: {fileID: 1620599564}
+  - component: {fileID: 1620599563}
+  - component: {fileID: 1620599562}
   m_Layer: 0
   m_Name: EventSystem
   m_TagString: Untagged
@@ -1265,13 +1265,13 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
---- !u!114 &1566131426
+--- !u!114 &1620599562
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1566131425}
+  m_GameObject: {fileID: 1620599561}
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 01614664b831546d2ae94a42149d80ac, type: 3}
@@ -1296,13 +1296,13 @@ MonoBehaviour:
   m_PointerBehavior: 0
   m_CursorLockBehavior: 0
   m_ScrollDeltaPerTick: 6
---- !u!114 &1566131427
+--- !u!114 &1620599563
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1566131425}
+  m_GameObject: {fileID: 1620599561}
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 76c392e42b5098c458856cdf6ecaaaa1, type: 3}
@@ -1311,13 +1311,13 @@ MonoBehaviour:
   m_FirstSelected: {fileID: 0}
   m_sendNavigationEvents: 1
   m_DragThreshold: 10
---- !u!4 &1566131428
+--- !u!4 &1620599564
 Transform:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1566131425}
+  m_GameObject: {fileID: 1620599561}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
@@ -1745,7 +1745,10 @@ PrefabInstance:
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
-    m_AddedComponents: []
+    m_AddedComponents:
+    - targetCorrespondingSourceObject: {fileID: 7881167154744510819, guid: 5340cd0a91d43b4479ce75afd022da11, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 0}
   m_SourcePrefab: {fileID: 100100000, guid: 5340cd0a91d43b4479ce75afd022da11, type: 3}
 --- !u!1001 &7950241075219165275
 PrefabInstance:
@@ -1839,7 +1842,6 @@ SceneRoots:
   - {fileID: 660151505}
   - {fileID: 2402106252094400159}
   - {fileID: 876371039}
-  - {fileID: 1566131428}
   - {fileID: 1692183753}
   - {fileID: 116253570}
   - {fileID: 1066029908}
@@ -1849,3 +1851,4 @@ SceneRoots:
   - {fileID: 599033741}
   - {fileID: 1299142508}
   - {fileID: 1423871285}
+  - {fileID: 1620599564}

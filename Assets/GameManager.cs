@@ -37,6 +37,7 @@ namespace Assets
         private float originalCountdownTextFontSize;
         public void OnNextClicked()
         {
+            Debug.Log("Next clicked");
             gameData.Level++;
             GameStorage.GetInstance().SetGameData(gameData);
             SceneManager.LoadScene("MainMenu", LoadSceneMode.Single);
