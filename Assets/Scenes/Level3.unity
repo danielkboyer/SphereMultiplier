@@ -235,11 +235,6 @@ PrefabInstance:
       insertIndex: -1
       addedObject: {fileID: 0}
   m_SourcePrefab: {fileID: 100100000, guid: 5bae7446a50c7394bb3d0b43d24d80de, type: 3}
---- !u!4 &109436179 stripped
-Transform:
-  m_CorrespondingSourceObject: {fileID: 2688399174742422318, guid: 61425efae71a3cf43935a6822ab97a61, type: 3}
-  m_PrefabInstance: {fileID: 1394488234}
-  m_PrefabAsset: {fileID: 0}
 --- !u!1001 &141514355
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -676,6 +671,16 @@ MonoBehaviour:
   m_Capped: 1
   m_Radius: 0.61
   m_Range: {x: 0, y: 1}
+  m_FlipNormals: 0
+  m_Shape:
+    rid: 3702135426835284126
+  references:
+    version: 2
+    RefIds:
+    - rid: 3702135426835284126
+      type: {class: Circle, ns: UnityEngine.Splines.ExtrusionShapes, asm: Unity.Splines}
+      data:
+        m_Sides: 8
 --- !u!23 &496874064
 MeshRenderer:
   m_ObjectHideFlags: 0
@@ -1781,63 +1786,6 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 2673576523201250125, guid: 5340cd0a91d43b4479ce75afd022da11, type: 3}
   m_PrefabInstance: {fileID: 6981117771967183970}
   m_PrefabAsset: {fileID: 0}
---- !u!1001 &1394488234
-PrefabInstance:
-  m_ObjectHideFlags: 0
-  serializedVersion: 2
-  m_Modification:
-    serializedVersion: 3
-    m_TransformParent: {fileID: 0}
-    m_Modifications:
-    - target: {fileID: 2688399174742422318, guid: 61425efae71a3cf43935a6822ab97a61, type: 3}
-      propertyPath: m_LocalPosition.x
-      value: 3.6
-      objectReference: {fileID: 0}
-    - target: {fileID: 2688399174742422318, guid: 61425efae71a3cf43935a6822ab97a61, type: 3}
-      propertyPath: m_LocalPosition.y
-      value: 0.34
-      objectReference: {fileID: 0}
-    - target: {fileID: 2688399174742422318, guid: 61425efae71a3cf43935a6822ab97a61, type: 3}
-      propertyPath: m_LocalPosition.z
-      value: -5.9699993
-      objectReference: {fileID: 0}
-    - target: {fileID: 2688399174742422318, guid: 61425efae71a3cf43935a6822ab97a61, type: 3}
-      propertyPath: m_LocalRotation.w
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 2688399174742422318, guid: 61425efae71a3cf43935a6822ab97a61, type: 3}
-      propertyPath: m_LocalRotation.x
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 2688399174742422318, guid: 61425efae71a3cf43935a6822ab97a61, type: 3}
-      propertyPath: m_LocalRotation.y
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 2688399174742422318, guid: 61425efae71a3cf43935a6822ab97a61, type: 3}
-      propertyPath: m_LocalRotation.z
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 2688399174742422318, guid: 61425efae71a3cf43935a6822ab97a61, type: 3}
-      propertyPath: m_LocalEulerAnglesHint.x
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 2688399174742422318, guid: 61425efae71a3cf43935a6822ab97a61, type: 3}
-      propertyPath: m_LocalEulerAnglesHint.y
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 2688399174742422318, guid: 61425efae71a3cf43935a6822ab97a61, type: 3}
-      propertyPath: m_LocalEulerAnglesHint.z
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 7952507687081380227, guid: 61425efae71a3cf43935a6822ab97a61, type: 3}
-      propertyPath: m_Name
-      value: PushWallTrigger
-      objectReference: {fileID: 0}
-    m_RemovedComponents: []
-    m_RemovedGameObjects: []
-    m_AddedGameObjects: []
-    m_AddedComponents: []
-  m_SourcePrefab: {fileID: 100100000, guid: 61425efae71a3cf43935a6822ab97a61, type: 3}
 --- !u!1 &1566131425
 GameObject:
   m_ObjectHideFlags: 0
@@ -2318,7 +2266,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 258858131217842162, guid: 93fe9d424f1d76d4aaa9b4894accf235, type: 3}
       propertyPath: m_LocalScale.x
-      value: 0.3
+      value: 0.36
+      objectReference: {fileID: 0}
+    - target: {fileID: 258858131217842162, guid: 93fe9d424f1d76d4aaa9b4894accf235, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 0.004
       objectReference: {fileID: 0}
     - target: {fileID: 2211227357392001718, guid: 93fe9d424f1d76d4aaa9b4894accf235, type: 3}
       propertyPath: m_LocalPosition.x
@@ -2378,7 +2330,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 5053532989773594059, guid: 93fe9d424f1d76d4aaa9b4894accf235, type: 3}
       propertyPath: m_AnchoredPosition.x
-      value: 0.085
+      value: 0.11
       objectReference: {fileID: 0}
     - target: {fileID: 5053532989773594059, guid: 93fe9d424f1d76d4aaa9b4894accf235, type: 3}
       propertyPath: m_AnchoredPosition.y
@@ -2433,9 +2385,17 @@ PrefabInstance:
       value: PushWall
       objectReference: {fileID: 0}
     - target: {fileID: 9177875044850732505, guid: 93fe9d424f1d76d4aaa9b4894accf235, type: 3}
+      propertyPath: distanceToPush
+      value: 0.2
+      objectReference: {fileID: 0}
+    - target: {fileID: 9177875044850732505, guid: 93fe9d424f1d76d4aaa9b4894accf235, type: 3}
+      propertyPath: pushDifficulty
+      value: 7
+      objectReference: {fileID: 0}
+    - target: {fileID: 9177875044850732505, guid: 93fe9d424f1d76d4aaa9b4894accf235, type: 3}
       propertyPath: pushWallTrigger
       value: 
-      objectReference: {fileID: 109436179}
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -2563,7 +2523,10 @@ PrefabInstance:
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
-    m_AddedComponents: []
+    m_AddedComponents:
+    - targetCorrespondingSourceObject: {fileID: 7881167154744510819, guid: 5340cd0a91d43b4479ce75afd022da11, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 0}
   m_SourcePrefab: {fileID: 100100000, guid: 5340cd0a91d43b4479ce75afd022da11, type: 3}
 --- !u!1660057539 &9223372036854775807
 SceneRoots:
@@ -2580,7 +2543,6 @@ SceneRoots:
   - {fileID: 992246939}
   - {fileID: 1830580351}
   - {fileID: 1178215136}
-  - {fileID: 1394488234}
   - {fileID: 1164206746}
   - {fileID: 918043550}
   - {fileID: 97531788}

@@ -1,8 +1,12 @@
+using Unity.VisualScripting;
 using UnityEngine;
 
-public class Enemy : MonoBehaviour
+public class Enemy : SharedBall
 {
-
+    public override bool isEnemy
+    {
+        get { return true; }
+    }
     public float speed = -3;
     public float maxSpeed = -5;
     public float forceApplyTime = .1f;
@@ -18,7 +22,15 @@ public class Enemy : MonoBehaviour
         rigidBody.maxLinearVelocity = maxSpeed * fastMultiplier;
         rigidBody.linearVelocity = new Vector3(0, 0, maxSpeed * fastMultiplier);
     }
+    private void OnTriggerExit(Collider other)
+    {
+        base.RemoveFromContacts(other);
+    }
 
+    private void OnTriggerEnter(Collider other)
+    {
+        base.AddToContacts(other);
+    }
     // Update is called once per frame
     void Update()
     {

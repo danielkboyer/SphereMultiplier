@@ -2,8 +2,13 @@ using System.Collections.Generic;
 using System.Linq;
 using UnityEngine;
 
-public class Ball : MonoBehaviour
+public class Ball : SharedBall
 {
+
+    public override bool isEnemy
+    {
+        get { return false; }
+    }
     public float speed = 3;
     public float maxSpeed = 5;
     public float forceApplyTime = .1f;
@@ -15,6 +20,8 @@ public class Ball : MonoBehaviour
 
     private EnemyBuilding[] enemyBuildings;
     public float enemyBuildingAttractDistance;
+
+
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
@@ -25,9 +32,14 @@ public class Ball : MonoBehaviour
         enemyBuildings = FindObjectsByType<EnemyBuilding>(FindObjectsSortMode.None).ToArray();
     }
 
+    private void OnTriggerExit(Collider other)
+    {
+        base.RemoveFromContacts(other);
+    }
 
     private void OnTriggerEnter(Collider other)
     {
+        base.AddToContacts(other);
         var enemy = other.gameObject.GetComponent<Enemy>();
         if (enemy != null)
         {
@@ -47,8 +59,8 @@ public class Ball : MonoBehaviour
         var rigidBody = GetComponent<Rigidbody>();
         lastAppliedTime -= Time.deltaTime;
 
-      
-      
+
+
 
         if (fastSpeedTime > 0)
         {
@@ -59,36 +71,36 @@ public class Ball : MonoBehaviour
                 rigidBody.maxLinearVelocity = maxSpeed;
             }
         }
-       
-        if(lastAppliedTime <= 0)
+
+        if (lastAppliedTime <= 0)
         {
             lastAppliedTime = forceApplyTime;
 
             var distanceBetween = float.MaxValue;
             Transform enemyBuilding = null;
-            foreach (var building in enemyBuildings.Where(e=> e!= null && e.AttractsBalls).Select(e=>e.transform))
+            foreach (var building in enemyBuildings.Where(e => e != null && e.AttractsBalls).Select(e => e.transform))
             {
                 var distance = Vector3.Distance(building.transform.position, this.transform.position);
-                if(distance < distanceBetween)
+                if (distance < distanceBetween)
                 {
                     distanceBetween = distance;
                     enemyBuilding = building;
                 }
             }
 
-            if(distanceBetween < enemyBuildingAttractDistance)
+            if (distanceBetween < enemyBuildingAttractDistance)
             {
                 var target = new Vector2(enemyBuilding.position.x, enemyBuilding.position.z);
                 var ballPos = new Vector2(transform.position.x, transform.position.z);
 
                 var force = target - ballPos;
 
-                rigidBody.AddForce(new Vector3(force.x,0,force.y) * speed);
+                rigidBody.AddForce(new Vector3(force.x, 0, force.y) * speed);
                 return;
 
             }
             rigidBody.AddForce(new Vector3(0, 0, speed));
         }
-    
+
     }
 }

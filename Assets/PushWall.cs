@@ -1,38 +1,120 @@
+using System.Collections.Generic;
 using TMPro;
+using Unity.VisualScripting;
 using UnityEngine;
 
 public class PushWall : MonoBehaviour
 {
-    public Transform pushWallTrigger;
+    public float distanceToPush = 1.5f;
+
+    public float speedModifier = .00001f;
+
+    public float pushDifficulty = 1;
     public TextMeshPro text;
     private float startDistance;
 
     private bool stopCalculating = false;
 
-    private float zWidth;
     private int percentage = 0;
+
+
+
+    private Dictionary<int, SharedBall> ballsTouchingWallDirectly = new Dictionary<int, SharedBall>();
+
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
-      
+
         text.text = "0%";
-        zWidth = GetComponent<Collider>().bounds.size.z/2;
-        startDistance = GetZDistance();
+        startDistance = this.transform.position.z;
         text.transform.parent = this.transform;
     }
 
-    private float GetZDistance()
+    private void OnTriggerEnter(Collider other)
     {
-        return Mathf.Abs(pushWallTrigger.position.z - (this.transform.position.z + zWidth));
+        var ball = other.GetComponent<SharedBall>();
+        if (ball != null)
+        {
+            if (!ballsTouchingWallDirectly.ContainsKey(ball.GetInstanceID()))
+            {
+                ballsTouchingWallDirectly.Add(ball.GetInstanceID(), ball);
+            }
+        }
     }
-    
+
+    private void OnTriggerExit(Collider other)
+    {
+
+        var ball = other.GetComponent<SharedBall>();
+        if (ball != null)
+        {
+            ballsTouchingWallDirectly.Remove(ball.GetInstanceID());
+        }
+    }
+
+    HashSet<int> RecurseBalls(SharedBall ball, HashSet<int> ballsAlreadyAdded)
+    {
+
+
+        if (!ballsAlreadyAdded.Add(ball.GetInstanceID()))
+        {
+            return ballsAlreadyAdded;
+        }
+
+
+
+        foreach (var ballInContact in ball.ballsInContact.Values)
+        {
+            ballsAlreadyAdded.AddRange(RecurseBalls(ballInContact, new HashSet<int>(ballsAlreadyAdded)));
+        }
+
+        return ballsAlreadyAdded;
+    }
+
+
     // Update is called once per frame
     void Update()
     {
-        var newPercentage = Mathf.RoundToInt(((startDistance - GetZDistance()) / startDistance)*100);
-            
-   
-        if(newPercentage != percentage && !stopCalculating)
+
+        if (stopCalculating)
+        {
+            var shrinkAmount = Time.deltaTime;
+            var newScale = this.transform.localScale - new Vector3(0, 0, shrinkAmount);
+            newScale.z = Mathf.Max(newScale.z, 0);
+            this.transform.localScale = newScale;
+            return;
+        }
+
+        var goodBallsInContact = new HashSet<int>();
+        var badBallsInContact = new HashSet<int>();
+        foreach (var ball in ballsTouchingWallDirectly.Values)
+        {
+            if (ball.isEnemy)
+            {
+                badBallsInContact.AddRange(RecurseBalls(ball, new HashSet<int>(badBallsInContact)));
+            }
+            else
+            {
+                goodBallsInContact.AddRange(RecurseBalls(ball, new HashSet<int>(goodBallsInContact)));
+
+            }
+        }
+
+
+        var goodBalls = goodBallsInContact.Count / pushDifficulty;
+        var badBalls = badBallsInContact.Count / pushDifficulty;
+
+
+        var diff = goodBalls - badBalls;
+
+
+        float speed = diff * speedModifier;
+
+
+        transform.position = new Vector3(transform.position.x, transform.position.y, transform.position.z + speed);
+
+        var newPercentage = Mathf.RoundToInt((transform.position.z - startDistance) / distanceToPush * 100);
+        if (newPercentage != percentage && !stopCalculating)
         {
             percentage = newPercentage;
             text.text = percentage.ToString() + "%";
@@ -40,6 +122,8 @@ public class PushWall : MonoBehaviour
         if (Mathf.Abs(newPercentage) == 100)
         {
             stopCalculating = true;
+
+            Destroy(gameObject, 1);
         }
     }
 }

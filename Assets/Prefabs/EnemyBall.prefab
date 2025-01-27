@@ -15,6 +15,7 @@ GameObject:
   - component: {fileID: 6178323522102954143}
   - component: {fileID: 2137597822811388401}
   - component: {fileID: 2912452889500736023}
+  - component: {fileID: 6319890480604998206}
   m_Layer: 0
   m_Name: EnemyBall
   m_TagString: Untagged
@@ -135,10 +136,10 @@ Rigidbody:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 93382896570416970}
-  serializedVersion: 4
+  serializedVersion: 5
   m_Mass: 1
-  m_Drag: 1.79
-  m_AngularDrag: 0.05
+  m_LinearDamping: 1.79
+  m_AngularDamping: 0.05
   m_CenterOfMass: {x: 0, y: 0, z: 0}
   m_InertiaTensor: {x: 1, y: 1, z: 1}
   m_InertiaRotation: {x: 0, y: 0, z: 0, w: 1}
@@ -172,3 +173,24 @@ MonoBehaviour:
   AttackPerSecond: 0.1
   material: {fileID: 2100000, guid: 4b524fdbfaacd3a49913293aa4d18912, type: 2}
   flashMaterial: {fileID: 2100000, guid: 872dec2bc12fe154e8dca14464457ab2, type: 2}
+--- !u!135 &6319890480604998206
+SphereCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 93382896570416970}
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_IsTrigger: 1
+  m_ProvidesContacts: 0
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Radius: 0.59
+  m_Center: {x: 0, y: 0, z: 0}
