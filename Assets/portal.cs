@@ -58,21 +58,25 @@ public class portal : MonoBehaviour
         {
             var renderer = ball.GetComponent<MeshRenderer>();
             var diameter = renderer.bounds.size.x;
-            for (var x = 2; x < newBallMultiplier + 2; x++)
+            for (var x = 2; x < newBallMultiplier + 1; x++)
             {
-                var left = x % 2 == 0;
+
+             
+               
                 var awayMulti = (x / 2) * diameter / 2;
 
                 var newPos = ball.transform.position;
                 newPos.z += awayMulti;
 
+                var movement = UnityEngine.Random.Range(-1f, 1f);
                 if (newBallMultiplier + 2 != 3)
                 {
-                    newPos.x += left ? -1 * diameter / 2 : diameter / 2;
+                    newPos.x +=  movement;
                 }
                 var newBall = Instantiate(ball.gameObject, newPos, Quaternion.identity);
                 var newBallScript = newBall.GetComponent<Ball>();
-                newBallScript.fastMultiplier = 1;
+                //newBallScript.fastSpeedTime= ball.fastSpeedTime;
+                //newBallScript.fastMultiplier = ball.fastMultiplier;
                 newBallScript.portalIds = new HashSet<int>(ball.portalIds);
             }
         }

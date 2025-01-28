@@ -466,9 +466,9 @@ MonoBehaviour:
   CannonAnimator: {fileID: 5467745939865401125}
   maxX: {fileID: 0}
   minX: {fileID: 0}
-  touchSpeed: 0.0099
+  touchSpeed: 0.021
   bigBallTime: 10
-  shotCooldown: 1.5
+  shotCooldown: 0.35
   timeBetweenBullets: 0.2
   shootAmount: 3
   TutorialText: {fileID: 8475651889397493959}

@@ -104,9 +104,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   speed: 120
-  maxSpeed: 2
+  maxSpeed: 3
   forceApplyTime: 0.1
-  fastMultiplier: 7
+  fastMultiplier: 4
   fastSpeedTime: 0.5
   enemyBuildingAttractDistance: 10
 --- !u!54 &-3222104581889856808
@@ -116,10 +116,10 @@ Rigidbody:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 970248571221768902}
-  serializedVersion: 4
+  serializedVersion: 5
   m_Mass: 4
-  m_Drag: 1.79
-  m_AngularDrag: 0.05
+  m_LinearDamping: 1.79
+  m_AngularDamping: 0.05
   m_CenterOfMass: {x: 0, y: 0, z: 0}
   m_InertiaTensor: {x: 1, y: 1, z: 1}
   m_InertiaRotation: {x: 0, y: 0, z: 0, w: 1}

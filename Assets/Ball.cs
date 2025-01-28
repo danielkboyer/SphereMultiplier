@@ -27,8 +27,6 @@ public class Ball : SharedBall
     {
         lastAppliedTime = forceApplyTime;
         var rigidBody = GetComponent<Rigidbody>();
-        rigidBody.maxLinearVelocity = maxSpeed * fastMultiplier;
-        rigidBody.linearVelocity = new Vector3(0, 0, maxSpeed * fastMultiplier);
         enemyBuildings = FindObjectsByType<EnemyBuilding>(FindObjectsSortMode.None).ToArray();
     }
 
@@ -53,7 +51,7 @@ public class Ball : SharedBall
         }
     }
     // Update is called once per frame
-    void Update()
+    void FixedUpdate()
     {
 
         var rigidBody = GetComponent<Rigidbody>();
@@ -65,6 +63,9 @@ public class Ball : SharedBall
         if (fastSpeedTime > 0)
         {
             fastSpeedTime -= Time.deltaTime;
+
+            rigidBody.maxLinearVelocity = maxSpeed * fastMultiplier;
+            rigidBody.linearVelocity = new Vector3(0, 0, maxSpeed * fastMultiplier);
 
             if (fastSpeedTime <= 0)
             {
@@ -95,7 +96,7 @@ public class Ball : SharedBall
 
                 var force = target - ballPos;
 
-                rigidBody.AddForce(new Vector3(force.x, 0, force.y) * speed);
+                rigidBody.AddForce(new Vector3(force.x, 0, force.y).normalized * speed);
                 return;
 
             }

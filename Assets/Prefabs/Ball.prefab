@@ -104,10 +104,10 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   speed: 40
-  maxSpeed: 2
+  maxSpeed: 3
   forceApplyTime: 0.1
-  fastMultiplier: 7
-  fastSpeedTime: 0.5
+  fastMultiplier: 4
+  fastSpeedTime: 0.4
   enemyBuildingAttractDistance: 10
 --- !u!54 &-3222104581889856808
 Rigidbody:

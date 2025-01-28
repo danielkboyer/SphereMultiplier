@@ -125,7 +125,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   speed: -200
-  maxSpeed: -2
+  maxSpeed: -3
   forceApplyTime: 0.1
   fastMultiplier: 4
   fastSpeedTime: 0.5

@@ -13,16 +13,13 @@ public class Cannon : MonoBehaviour
     public Transform minX;
     public float touchSpeed = 1;
 
-    private bool isShooting = false;
 
     public float bigBallTime = 8;
     private float bigBallTimeCurrent = 0;
     private float shotWaitTime;
     public float shotCooldown;
     public float timeBetweenBullets = .1f;
-    private float lastBulletTime = 0;
     public int shootAmount = 3;
-    private int currentShotAmount = 0;
 
     public TextMeshPro TutorialText;
     public float whenToShowShoot = 2;
@@ -47,7 +44,7 @@ public class Cannon : MonoBehaviour
         //UnityEngine.InputSystem.EnhancedTouch.TouchSimulation.Enable();
 
         var gameData = GameStorage.GetInstance().GetGameData();
-        shotCooldown = gameData.CannonFireRate;
+      
         CannonAnimator.SetFloat("ShootTime", 1/timeBetweenBullets);
         originalMaterials = ChangeRenderers.Select(t=>new Color(t.material.color.r,t.material.color.g,t.material.color.b,t.material.color.a)).ToArray();
     }
@@ -121,29 +118,6 @@ public class Cannon : MonoBehaviour
         var timePassed = Time.deltaTime;
 
 
-
-        if (isShooting)
-        {
-            lastBulletTime -= timePassed;
-            if (lastBulletTime <= 0)
-            {
-                CannonAnimator.SetTrigger("Shoot");
-                Instantiate(ball, ballShootPosition.position, Quaternion.identity);
-
-                lastBulletTime = timeBetweenBullets;
-                currentShotAmount++;
-
-                if (currentShotAmount == shootAmount)
-                {
-                    currentShotAmount = 0;
-                    isShooting = false;
-                }
-            }
-
-            return;
-
-        }
-
         shotWaitTime -= timePassed;
         if (shotWaitTime <= 0 && isTouching)
         {
@@ -151,9 +125,6 @@ public class Cannon : MonoBehaviour
             shotWaitTime = shotCooldown;
             CannonAnimator.SetTrigger("Shoot");
             Instantiate(ball, ballShootPosition.position, Quaternion.identity);
-            lastBulletTime = timeBetweenBullets;
-            currentShotAmount = 1;
-            isShooting = true;
 
         }
 

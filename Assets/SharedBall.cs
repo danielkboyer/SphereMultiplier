@@ -19,29 +19,29 @@ public abstract class SharedBall : MonoBehaviour
 
     protected void AddToContacts(Collider other)
     {
-        //var ball = other.gameObject.GetComponent<SharedBall>();
-        //if (ball != null && ball.isEnemy == this.isEnemy)
-        //{
+        var ball = other.gameObject.GetComponent<SharedBall>();
+        if (ball != null && ball.isEnemy == this.isEnemy)
+        {
 
 
-        //    if(!ballsInContact.ContainsKey(ball.GetInstanceID()))
-        //    {
-        //        ballsInContact.Add(ball.GetInstanceID(), ball);
-        //    }
-        //}
+            if(!ballsInContact.ContainsKey(ball.GetInstanceID()))
+            {
+                ballsInContact.Add(ball.GetInstanceID(), ball);
+            }
+        }
     }
 
     protected void RemoveFromContacts(Collider other)
     {
-        //var ball = other.gameObject.GetComponent<SharedBall>();
-        //if (ball != null && ball.isEnemy == this.isEnemy)
-        //{
-        //    if (ballsInContact.ContainsKey(ball.GetInstanceID()))
-        //    {
-        //        ballsInContact.Remove(ball.GetInstanceID());
+        var ball = other.gameObject.GetComponent<SharedBall>();
+        if (ball != null && ball.isEnemy == this.isEnemy)
+        {
+            if (ballsInContact.ContainsKey(ball.GetInstanceID()))
+            {
+                ballsInContact.Remove(ball.GetInstanceID());
 
-        //    }
-        //}
+            }
+        }
     }
 
  
