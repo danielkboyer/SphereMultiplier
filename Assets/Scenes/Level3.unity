@@ -2390,7 +2390,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 9177875044850732505, guid: 93fe9d424f1d76d4aaa9b4894accf235, type: 3}
       propertyPath: pushDifficulty
-      value: 7
+      value: 120
       objectReference: {fileID: 0}
     - target: {fileID: 9177875044850732505, guid: 93fe9d424f1d76d4aaa9b4894accf235, type: 3}
       propertyPath: pushWallTrigger

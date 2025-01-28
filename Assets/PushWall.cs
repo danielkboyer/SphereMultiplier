@@ -7,7 +7,7 @@ public class PushWall : MonoBehaviour
 {
     public float distanceToPush = 1.5f;
 
-    public float speedModifier = .00001f;
+    private float speedModifier = .02f;
 
     public float pushDifficulty = 1;
     public TextMeshPro text;
@@ -18,6 +18,11 @@ public class PushWall : MonoBehaviour
     private int percentage = 0;
 
 
+    //for optimization
+    private float checkBallCount = .2f;
+    private float timePassed = 0;
+
+    public float currentBallsTouching = 0;
 
     private Dictionary<int, SharedBall> ballsTouchingWallDirectly = new Dictionary<int, SharedBall>();
 
@@ -76,6 +81,7 @@ public class PushWall : MonoBehaviour
     void Update()
     {
 
+
         if (stopCalculating)
         {
             var shrinkAmount = Time.deltaTime;
@@ -85,30 +91,43 @@ public class PushWall : MonoBehaviour
             return;
         }
 
-        var goodBallsInContact = new HashSet<int>();
-        var badBallsInContact = new HashSet<int>();
-        foreach (var ball in ballsTouchingWallDirectly.Values)
+        timePassed += Time.deltaTime;
+        if (timePassed > checkBallCount)
         {
-            if (ball.isEnemy)
-            {
-                badBallsInContact.AddRange(RecurseBalls(ball, new HashSet<int>(badBallsInContact)));
-            }
-            else
-            {
-                goodBallsInContact.AddRange(RecurseBalls(ball, new HashSet<int>(goodBallsInContact)));
 
+
+
+            var goodBallsInContact = new HashSet<int>();
+            var badBallsInContact = new HashSet<int>();
+            foreach (var ball in ballsTouchingWallDirectly.Values)
+            {
+                if (ball.isEnemy)
+                {
+                    badBallsInContact.AddRange(RecurseBalls(ball, new HashSet<int>(badBallsInContact)));
+                }
+                else
+                {
+                    goodBallsInContact.AddRange(RecurseBalls(ball, new HashSet<int>(goodBallsInContact)));
+
+                }
             }
+            Debug.Log($"Good balls: {goodBallsInContact.Count}, Bad balls: {badBallsInContact.Count}");
+
+            var goodBalls = goodBallsInContact.Count / pushDifficulty;
+            var badBalls = badBallsInContact.Count / pushDifficulty;
+
+         
+            var diff = goodBalls - badBalls;
+
+            currentBallsTouching = diff;
+
+            timePassed = 0;
+
         }
+      
 
 
-        var goodBalls = goodBallsInContact.Count / pushDifficulty;
-        var badBalls = badBallsInContact.Count / pushDifficulty;
-
-
-        var diff = goodBalls - badBalls;
-
-
-        float speed = diff * speedModifier;
+        float speed = currentBallsTouching * speedModifier * Time.deltaTime;
 
 
         transform.position = new Vector3(transform.position.x, transform.position.y, transform.position.z + speed);
@@ -119,7 +138,7 @@ public class PushWall : MonoBehaviour
             percentage = newPercentage;
             text.text = percentage.ToString() + "%";
         }
-        if (Mathf.Abs(newPercentage) == 100)
+        if (Mathf.Abs(newPercentage) >= 100)
         {
             stopCalculating = true;
 
