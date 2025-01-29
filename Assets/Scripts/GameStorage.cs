@@ -28,6 +28,11 @@ namespace Assets.Scripts
 
         private const string STORAGE = "Storage";
 
+        private const string MAIN_MENU_NUMBER_OF_BLOCKS = "Main_Menu_Number_Of_Blocks";
+        private const string MAIN_MENU_BUILDING_HEALTH = "Main_Menu_Building_Health";
+        private const string MAIN_MENU_LEVEL = "Main_Menu_Level";
+        private const string MAIN_MENU_BLOCKS = "Main_Menu_Blocks";
+
         private GameData data;
         public GameData GetGameData()
         {
@@ -48,7 +53,9 @@ namespace Assets.Scripts
                 var level = PlayerPrefs.GetInt(LEVEL, 1);
 
                 var storage = PlayerPrefs.GetInt(STORAGE, 2000);
-                data = new GameData(coins, cannonFireRate, smallBallHealth, bigBallHealth,smallEnemyHealth,bigEnemyHealth, smallBallAttack,bigBallAttack,smallEnemyAttack,bigEnemyAttack, level, storage);
+
+                var mainMenuLevel = GetMainMenuLevel();
+                data = new GameData(coins, cannonFireRate, smallBallHealth, bigBallHealth,smallEnemyHealth,bigEnemyHealth, smallBallAttack,bigBallAttack,smallEnemyAttack,bigEnemyAttack, level, storage, mainMenuLevel);
             }
             return data;
         }
@@ -81,8 +88,32 @@ namespace Assets.Scripts
             PlayerPrefs.SetInt(LEVEL, data.Level);
 
             PlayerPrefs.SetInt(STORAGE, data.Storage);
+            SaveMainMenuData(data.MainMenuLevel);
 
             PlayerPrefs.Save();
+        }
+        private MainMenuLevel GetMainMenuLevel()
+        {
+            var menuLevel = PlayerPrefs.GetInt(MAIN_MENU_LEVEL, 1);
+            var numberOfBlocks = PlayerPrefs.GetInt(MAIN_MENU_LEVEL+ MAIN_MENU_NUMBER_OF_BLOCKS, MainMenuLevel.ROW_SIZE*32);
+            var buildingHealth = PlayerPrefs.GetInt(MAIN_MENU_LEVEL + MAIN_MENU_BUILDING_HEALTH, 5000);
+            var blocks = new List<int>();
+            for (int i = 0; i < numberOfBlocks; i++)
+            {
+                blocks.Add(PlayerPrefs.GetInt(MAIN_MENU_LEVEL + MAIN_MENU_BLOCKS + i, 1));
+            }
+
+            return new MainMenuLevel(menuLevel, blocks, buildingHealth, numberOfBlocks);
+        }
+        private void SaveMainMenuData(MainMenuLevel mainMenuLevel)
+        {
+            PlayerPrefs.SetInt(MAIN_MENU_LEVEL, mainMenuLevel.level);
+            PlayerPrefs.SetInt(MAIN_MENU_LEVEL + MAIN_MENU_NUMBER_OF_BLOCKS, mainMenuLevel.numberOfBlocks);
+            PlayerPrefs.SetInt(MAIN_MENU_LEVEL + MAIN_MENU_BUILDING_HEALTH, mainMenuLevel.BuildingHealth);
+            for (int i = 0; i < mainMenuLevel.numberOfBlocks; i++)
+            {
+                PlayerPrefs.SetInt(MAIN_MENU_LEVEL + MAIN_MENU_BLOCKS + i, mainMenuLevel.blocks[i]);
+            }
         }
 
 

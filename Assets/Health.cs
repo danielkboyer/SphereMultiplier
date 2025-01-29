@@ -97,12 +97,17 @@ public class Health : MonoBehaviour
         return LastAttack <= 0;
     }
 
+    public void GetAttacked(int dmg)
+    {
+        Health_ -= dmg;
+        StartFlash();
+    }
+
     public void AttackEnemy(Health opp)
     {
         if (CanAttack())
         {
             opp.Health_ -= Attack;
-            var darken = (float)Attack / _startingHealth;
         
             opp.StartFlash();
             

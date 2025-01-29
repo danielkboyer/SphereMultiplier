@@ -1,3 +1,4 @@
+using System.Collections.Generic;
 using TMPro;
 using UnityEngine;
 
@@ -5,6 +6,9 @@ public class CountWall : MonoBehaviour
 {
     public TextMeshPro text;
     public int amountNeeded;
+
+    public float timeBetweenAttacks = .3f;
+    public Dictionary<int, float> ballAttackTime = new Dictionary<int, float>();
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
@@ -17,17 +21,37 @@ public class CountWall : MonoBehaviour
         
     }
 
-    void OnTriggerEnter(Collider other)
+    void OnTriggerStay(Collider other)
     {
         var ball = other.GetComponent<Ball>();
         if (ball != null)
         {
-            Destroy(other.gameObject);
+            if(!ballAttackTime.ContainsKey(ball.GetInstanceID()))
+            {
+                ballAttackTime.Add(ball.GetInstanceID(), Time.time);
+            }
+            else
+            {
+                var lastAttackTime = ballAttackTime[ball.GetInstanceID()];
+
+                if(Time.time - lastAttackTime < timeBetweenAttacks)
+                {
+                    return;
+                }
+
+
+                ballAttackTime[ball.GetInstanceID()] = Time.time;
+            }
+
+            var health = ball.GetComponent<Health>();
+
+            health.GetAttacked(10);
+
             amountNeeded--;
             text.text = amountNeeded.ToString();
             if (amountNeeded == 0)
             {
-                Destroy(gameObject);
+                Destroy(transform.parent.gameObject);
             }
         }
     }
