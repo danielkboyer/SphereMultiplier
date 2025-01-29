@@ -2220,15 +2220,15 @@ PrefabInstance:
     - target: {fileID: 8006517476999565081, guid: 7e2a61b7a00009846ab1998dd71b000b, type: 3}
       propertyPath: textMesh
       value: 
-      objectReference: {fileID: 0}
+      objectReference: {fileID: 1776153897}
     - target: {fileID: 8006517476999565081, guid: 7e2a61b7a00009846ab1998dd71b000b, type: 3}
       propertyPath: CoinSpawnPos
       value: 
-      objectReference: {fileID: 0}
+      objectReference: {fileID: 1776153899}
     - target: {fileID: 8006517476999565081, guid: 7e2a61b7a00009846ab1998dd71b000b, type: 3}
       propertyPath: SpawnPosition
       value: 
-      objectReference: {fileID: 0}
+      objectReference: {fileID: 1776153898}
     - target: {fileID: 8006517476999565081, guid: 7e2a61b7a00009846ab1998dd71b000b, type: 3}
       propertyPath: buildingHealth
       value: 500
@@ -2305,6 +2305,27 @@ PrefabInstance:
       insertIndex: -1
       addedObject: {fileID: 0}
   m_SourcePrefab: {fileID: 100100000, guid: 7e2a61b7a00009846ab1998dd71b000b, type: 3}
+--- !u!114 &1776153897 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 4031985324983124276, guid: 7e2a61b7a00009846ab1998dd71b000b, type: 3}
+  m_PrefabInstance: {fileID: 1776153896}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9541d86e2fd84c1d9990edf0852d74ab, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!4 &1776153898 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 8639834308625921213, guid: 7e2a61b7a00009846ab1998dd71b000b, type: 3}
+  m_PrefabInstance: {fileID: 1776153896}
+  m_PrefabAsset: {fileID: 0}
+--- !u!4 &1776153899 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 4821148537393960909, guid: 7e2a61b7a00009846ab1998dd71b000b, type: 3}
+  m_PrefabInstance: {fileID: 1776153896}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &1788803753
 GameObject:
   m_ObjectHideFlags: 0
@@ -2852,15 +2873,15 @@ PrefabInstance:
     - target: {fileID: 8006517476999565081, guid: 7e2a61b7a00009846ab1998dd71b000b, type: 3}
       propertyPath: textMesh
       value: 
-      objectReference: {fileID: 0}
+      objectReference: {fileID: 1893141617}
     - target: {fileID: 8006517476999565081, guid: 7e2a61b7a00009846ab1998dd71b000b, type: 3}
       propertyPath: CoinSpawnPos
       value: 
-      objectReference: {fileID: 0}
+      objectReference: {fileID: 1893141619}
     - target: {fileID: 8006517476999565081, guid: 7e2a61b7a00009846ab1998dd71b000b, type: 3}
       propertyPath: SpawnPosition
       value: 
-      objectReference: {fileID: 0}
+      objectReference: {fileID: 1893141618}
     - target: {fileID: 8006517476999565081, guid: 7e2a61b7a00009846ab1998dd71b000b, type: 3}
       propertyPath: buildingHealth
       value: 500
@@ -2937,6 +2958,27 @@ PrefabInstance:
       insertIndex: -1
       addedObject: {fileID: 0}
   m_SourcePrefab: {fileID: 100100000, guid: 7e2a61b7a00009846ab1998dd71b000b, type: 3}
+--- !u!114 &1893141617 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 4031985324983124276, guid: 7e2a61b7a00009846ab1998dd71b000b, type: 3}
+  m_PrefabInstance: {fileID: 1893141616}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9541d86e2fd84c1d9990edf0852d74ab, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!4 &1893141618 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 8639834308625921213, guid: 7e2a61b7a00009846ab1998dd71b000b, type: 3}
+  m_PrefabInstance: {fileID: 1893141616}
+  m_PrefabAsset: {fileID: 0}
+--- !u!4 &1893141619 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 4821148537393960909, guid: 7e2a61b7a00009846ab1998dd71b000b, type: 3}
+  m_PrefabInstance: {fileID: 1893141616}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1001 &2036083487
 PrefabInstance:
   m_ObjectHideFlags: 0
