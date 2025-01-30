@@ -304,7 +304,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 324221018452950995, guid: 48afecc08634356459515d739a920e10, type: 3}
       propertyPath: m_LocalPosition.x
-      value: 6.63
+      value: 7
       objectReference: {fileID: 0}
     - target: {fileID: 324221018452950995, guid: 48afecc08634356459515d739a920e10, type: 3}
       propertyPath: m_LocalPosition.y
@@ -582,7 +582,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 8579617692393116984, guid: 5bae7446a50c7394bb3d0b43d24d80de, type: 3}
       propertyPath: newBallMultiplier
-      value: 6
+      value: 4
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -1220,7 +1220,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 324221018452950995, guid: 48afecc08634356459515d739a920e10, type: 3}
       propertyPath: m_LocalPosition.x
-      value: -3.77
+      value: -4.03
       objectReference: {fileID: 0}
     - target: {fileID: 324221018452950995, guid: 48afecc08634356459515d739a920e10, type: 3}
       propertyPath: m_LocalPosition.y
@@ -1293,8 +1293,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   To: {fileID: 88213778}
   From: {fileID: 827654725}
-  Speed: 1.5
-  PauseTime: 0
+  Speed: 3
+  PauseTime: 1.5
 --- !u!212 &1094824561 stripped
 SpriteRenderer:
   m_CorrespondingSourceObject: {fileID: 2745219561708590206, guid: 5340cd0a91d43b4479ce75afd022da11, type: 3}
@@ -1509,7 +1509,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 8006517476999565081, guid: 7e2a61b7a00009846ab1998dd71b000b, type: 3}
       propertyPath: enemyBundles.Array.data[0].spawnTime
-      value: 5
+      value: 3
       objectReference: {fileID: 0}
     - target: {fileID: 8006517476999565081, guid: 7e2a61b7a00009846ab1998dd71b000b, type: 3}
       propertyPath: enemyBundles.Array.data[1].bigAmount
@@ -1517,7 +1517,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 8006517476999565081, guid: 7e2a61b7a00009846ab1998dd71b000b, type: 3}
       propertyPath: enemyBundles.Array.data[1].spawnTime
-      value: 10
+      value: 7
       objectReference: {fileID: 0}
     - target: {fileID: 8006517476999565081, guid: 7e2a61b7a00009846ab1998dd71b000b, type: 3}
       propertyPath: enemyBundles.Array.data[2].bigAmount
@@ -1525,7 +1525,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 8006517476999565081, guid: 7e2a61b7a00009846ab1998dd71b000b, type: 3}
       propertyPath: enemyBundles.Array.data[2].spawnTime
-      value: 15
+      value: 12
       objectReference: {fileID: 0}
     - target: {fileID: 8006517476999565081, guid: 7e2a61b7a00009846ab1998dd71b000b, type: 3}
       propertyPath: enemyBundles.Array.data[3].bigAmount
@@ -1533,11 +1533,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 8006517476999565081, guid: 7e2a61b7a00009846ab1998dd71b000b, type: 3}
       propertyPath: enemyBundles.Array.data[3].spawnTime
-      value: 20
+      value: 16
       objectReference: {fileID: 0}
     - target: {fileID: 8006517476999565081, guid: 7e2a61b7a00009846ab1998dd71b000b, type: 3}
       propertyPath: enemyBundles.Array.data[0].smallAmount
-      value: 20
+      value: 30
       objectReference: {fileID: 0}
     - target: {fileID: 8006517476999565081, guid: 7e2a61b7a00009846ab1998dd71b000b, type: 3}
       propertyPath: enemyBundles.Array.data[0].spawnRepeat
@@ -1565,7 +1565,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 8006517476999565081, guid: 7e2a61b7a00009846ab1998dd71b000b, type: 3}
       propertyPath: enemyBundles.Array.data[3].spawnRepeat
-      value: 1
+      value: -1
+      objectReference: {fileID: 0}
+    - target: {fileID: 8006517476999565081, guid: 7e2a61b7a00009846ab1998dd71b000b, type: 3}
+      propertyPath: enemyBundles.Array.data[3].repeatingTime
+      value: 4
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -1690,7 +1694,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 8579617692393116984, guid: 5bae7446a50c7394bb3d0b43d24d80de, type: 3}
       propertyPath: newBallMultiplier
-      value: 4
+      value: 3
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -1860,7 +1864,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 8579617692393116984, guid: 5bae7446a50c7394bb3d0b43d24d80de, type: 3}
       propertyPath: newBallMultiplier
-      value: 3
+      value: 2
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -1919,7 +1923,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 324221018452950995, guid: 48afecc08634356459515d739a920e10, type: 3}
       propertyPath: m_LocalPosition.x
-      value: -6.75
+      value: -7.01
       objectReference: {fileID: 0}
     - target: {fileID: 324221018452950995, guid: 48afecc08634356459515d739a920e10, type: 3}
       propertyPath: m_LocalPosition.y

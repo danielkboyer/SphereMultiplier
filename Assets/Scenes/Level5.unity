@@ -17190,7 +17190,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 8006517476999565081, guid: 7e2a61b7a00009846ab1998dd71b000b, type: 3}
       propertyPath: enemyBundles.Array.data[0].spawnTime
-      value: 5
+      value: 4
       objectReference: {fileID: 0}
     - target: {fileID: 8006517476999565081, guid: 7e2a61b7a00009846ab1998dd71b000b, type: 3}
       propertyPath: enemyBundles.Array.data[1].bigAmount
@@ -17198,7 +17198,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 8006517476999565081, guid: 7e2a61b7a00009846ab1998dd71b000b, type: 3}
       propertyPath: enemyBundles.Array.data[1].spawnTime
-      value: 10
+      value: 8
       objectReference: {fileID: 0}
     - target: {fileID: 8006517476999565081, guid: 7e2a61b7a00009846ab1998dd71b000b, type: 3}
       propertyPath: enemyBundles.Array.data[2].spawnTime
@@ -29334,7 +29334,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 8006517476999565081, guid: 7e2a61b7a00009846ab1998dd71b000b, type: 3}
       propertyPath: enemyBundles.Array.data[0].spawnTime
-      value: 5
+      value: 4
       objectReference: {fileID: 0}
     - target: {fileID: 8006517476999565081, guid: 7e2a61b7a00009846ab1998dd71b000b, type: 3}
       propertyPath: enemyBundles.Array.data[1].bigAmount
@@ -29342,7 +29342,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 8006517476999565081, guid: 7e2a61b7a00009846ab1998dd71b000b, type: 3}
       propertyPath: enemyBundles.Array.data[1].spawnTime
-      value: 10
+      value: 8
       objectReference: {fileID: 0}
     - target: {fileID: 8006517476999565081, guid: 7e2a61b7a00009846ab1998dd71b000b, type: 3}
       propertyPath: enemyBundles.Array.data[2].spawnTime
@@ -29358,7 +29358,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 8006517476999565081, guid: 7e2a61b7a00009846ab1998dd71b000b, type: 3}
       propertyPath: enemyBundles.Array.data[1].smallAmount
-      value: 25
+      value: 20
       objectReference: {fileID: 0}
     - target: {fileID: 8006517476999565081, guid: 7e2a61b7a00009846ab1998dd71b000b, type: 3}
       propertyPath: enemyBundles.Array.data[1].spawnRepeat
@@ -31549,15 +31549,15 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 2636320473571898737, guid: 9510e51a7ba24cc40ae06c38d0d050f3, type: 3}
       propertyPath: m_LocalPosition.x
-      value: 2.31
+      value: 2.46
       objectReference: {fileID: 0}
     - target: {fileID: 2636320473571898737, guid: 9510e51a7ba24cc40ae06c38d0d050f3, type: 3}
       propertyPath: m_LocalPosition.y
-      value: 0.731
+      value: 0.48
       objectReference: {fileID: 0}
     - target: {fileID: 2636320473571898737, guid: 9510e51a7ba24cc40ae06c38d0d050f3, type: 3}
       propertyPath: m_LocalPosition.z
-      value: 3.352
+      value: 3.62
       objectReference: {fileID: 0}
     - target: {fileID: 2636320473571898737, guid: 9510e51a7ba24cc40ae06c38d0d050f3, type: 3}
       propertyPath: m_LocalRotation.w

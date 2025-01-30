@@ -1903,6 +1903,47 @@ PrefabInstance:
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: b158d133871b6c54280093f213432670, type: 3}
+--- !u!1 &136450921 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 919132149155446097, guid: 6fd1e1af800905844adb663cbcd70c9b, type: 3}
+  m_PrefabInstance: {fileID: 671485492}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &136450923
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 136450921}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 28108d36fff354e4196d4a1ab9c60d2d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  text: {fileID: 0}
+  amountNeeded: 35
+  timeBetweenAttacks: 0.3
+--- !u!65 &136450924
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 136450921}
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_IsTrigger: 0
+  m_ProvidesContacts: 0
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Size: {x: 1.2699351, y: 1.2797533, z: 1}
+  m_Center: {x: -0.0038494468, y: 0.6245326, z: -2.6786962e-11}
 --- !u!1001 &141514355
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -4813,15 +4854,15 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 8006517476999565081, guid: 7e2a61b7a00009846ab1998dd71b000b, type: 3}
       propertyPath: enemyBundles.Array.data[1].bigAmount
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 8006517476999565081, guid: 7e2a61b7a00009846ab1998dd71b000b, type: 3}
       propertyPath: enemyBundles.Array.data[1].spawnTime
-      value: 10
+      value: 9
       objectReference: {fileID: 0}
     - target: {fileID: 8006517476999565081, guid: 7e2a61b7a00009846ab1998dd71b000b, type: 3}
       propertyPath: enemyBundles.Array.data[0].smallAmount
-      value: 10
+      value: 15
       objectReference: {fileID: 0}
     - target: {fileID: 8006517476999565081, guid: 7e2a61b7a00009846ab1998dd71b000b, type: 3}
       propertyPath: enemyBundles.Array.data[0].spawnRepeat
@@ -7606,6 +7647,10 @@ PrefabInstance:
       propertyPath: MovingInfo.from
       value: 
       objectReference: {fileID: 35540302}
+    - target: {fileID: 8579617692393116984, guid: ea448f2ced99c604bafcba2bf09b0dd6, type: 3}
+      propertyPath: MovingInfo.speed
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 8579617692393116984, guid: ea448f2ced99c604bafcba2bf09b0dd6, type: 3}
       propertyPath: MovingInfo.enabled
       value: 1
@@ -10757,7 +10802,13 @@ PrefabInstance:
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
-    m_AddedComponents: []
+    m_AddedComponents:
+    - targetCorrespondingSourceObject: {fileID: 919132149155446097, guid: 6fd1e1af800905844adb663cbcd70c9b, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 136450924}
+    - targetCorrespondingSourceObject: {fileID: 919132149155446097, guid: 6fd1e1af800905844adb663cbcd70c9b, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 136450923}
   m_SourcePrefab: {fileID: 100100000, guid: 6fd1e1af800905844adb663cbcd70c9b, type: 3}
 --- !u!1001 &679678601
 PrefabInstance:
@@ -11172,7 +11223,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 8006517476999565081, guid: 7e2a61b7a00009846ab1998dd71b000b, type: 3}
       propertyPath: enemyBundles.Array.data[0].bigAmount
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 8006517476999565081, guid: 7e2a61b7a00009846ab1998dd71b000b, type: 3}
       propertyPath: enemyBundles.Array.data[0].spawnTime
@@ -11180,15 +11231,15 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 8006517476999565081, guid: 7e2a61b7a00009846ab1998dd71b000b, type: 3}
       propertyPath: enemyBundles.Array.data[1].bigAmount
-      value: 2
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 8006517476999565081, guid: 7e2a61b7a00009846ab1998dd71b000b, type: 3}
       propertyPath: enemyBundles.Array.data[1].spawnTime
-      value: 10
+      value: 9
       objectReference: {fileID: 0}
     - target: {fileID: 8006517476999565081, guid: 7e2a61b7a00009846ab1998dd71b000b, type: 3}
       propertyPath: enemyBundles.Array.data[0].smallAmount
-      value: 15
+      value: 30
       objectReference: {fileID: 0}
     - target: {fileID: 8006517476999565081, guid: 7e2a61b7a00009846ab1998dd71b000b, type: 3}
       propertyPath: enemyBundles.Array.data[0].spawnRepeat
@@ -11196,7 +11247,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 8006517476999565081, guid: 7e2a61b7a00009846ab1998dd71b000b, type: 3}
       propertyPath: enemyBundles.Array.data[1].smallAmount
-      value: 28
+      value: 30
       objectReference: {fileID: 0}
     - target: {fileID: 8006517476999565081, guid: 7e2a61b7a00009846ab1998dd71b000b, type: 3}
       propertyPath: enemyBundles.Array.data[1].spawnRepeat

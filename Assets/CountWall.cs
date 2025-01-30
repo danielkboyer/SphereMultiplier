@@ -12,7 +12,8 @@ public class CountWall : MonoBehaviour
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
-        text.text = amountNeeded.ToString();
+        if (text != null)
+            text.text = amountNeeded.ToString();
     }
 
     // Update is called once per frame
@@ -48,10 +49,18 @@ public class CountWall : MonoBehaviour
             health.GetAttacked(10);
 
             amountNeeded--;
-            text.text = amountNeeded.ToString();
+            if(text != null)
+                text.text = amountNeeded.ToString();
             if (amountNeeded == 0)
             {
-                Destroy(transform.parent.gameObject);
+                if (transform.parent != null)
+                {
+                    Destroy(transform.parent.gameObject);
+                }
+                else
+                {
+                    Destroy(gameObject);
+                }
             }
         }
     }
