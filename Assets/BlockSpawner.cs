@@ -1,4 +1,5 @@
 using Assets.Scripts;
+using System.Collections;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
@@ -15,10 +16,15 @@ public class BlockSpawner : MonoBehaviour
 
     public GameObject ShootBall;
 
+    public GameObject BattleUI;
+    public GameObject ShootUI;
+
     public Camera myCamera;
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
+        BattleUI.SetActive(false);
+        ShootUI.SetActive(true);
         gameData = GameStorage.GetInstance().GetGameData();
 
         float planeWidth = Plane.GetComponent<Renderer>().bounds.size.x;
@@ -62,6 +68,16 @@ public class BlockSpawner : MonoBehaviour
         GameStorage.GetInstance().SetGameData(gameData, true);
     }
 
+
+    IEnumerator SetButtonActive()
+    {
+
+        yield return new WaitForSeconds(1);
+        BattleUI.SetActive(true);
+
+      
+    }
+
     // Update is called once per frame
     void Update()
     {
@@ -69,8 +85,10 @@ public class BlockSpawner : MonoBehaviour
         if (Input.touchCount > 0)
         {
             Debug.Log("Touch detected");
+            ShootUI.SetActive(false);
             if (gameData.Coins < coinCost)
             {
+                StartCoroutine(SetButtonActive());
                 Debug.Log("Not enough coins");
                 return;
             }
