@@ -9,7 +9,7 @@ public class LoseLine : MonoBehaviour
         if (enemy != null)
         {
             Debug.Log("Game over");
-            Destroy(other.gameObject);
+            FindAnyObjectByType<Assets.GameManager>().StartYouLose();
         }
     }
 }

@@ -5,6 +5,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using TMPro;
+using Unity.Services.Analytics;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
@@ -27,8 +28,9 @@ namespace Assets
         public float CountdownTime = 4.99f;
         private float countdownTimer = 0;
         private bool gameOver = false;
+        private bool youLose = false;
 
-
+        private bool didKillEnemies = false;
 
         private int startCoins = 0;
 
@@ -37,9 +39,20 @@ namespace Assets
         private float originalCountdownTextFontSize;
         public void OnNextClicked()
         {
+
             Debug.Log("Next clicked");
-            gameData.Level++;
-            GameStorage.GetInstance().SetGameData(gameData);
+
+            var levelFinished = new LevelFinished();
+            levelFinished.UserWonLevel = !youLose;
+            levelFinished.Level = gameData.Level;
+            AnalyticsService.Instance.RecordEvent(levelFinished);
+            if (!youLose)
+            {
+                gameData.Level++;
+                GameStorage.GetInstance().SetGameData(gameData);
+            }
+
+          
             SceneManager.LoadScene("MainMenu", LoadSceneMode.Single);
         }
         private void Start()
@@ -52,6 +65,22 @@ namespace Assets
             GoHomeScreen.SetActive(false);
             originalCountdownTextFontSize = CountdownText.fontSize;
             Coin.GetComponent<Collider>().enabled = false;
+        }
+
+
+        public void StartYouLose()
+        {
+            youLose = true;
+            gameOver = true;
+            FindAnyObjectByType<Cannon>().SetGameOver();
+            CountdownText.enabled = false;
+            GoHomeScreen.SetActive(true);
+            homeScreenCoinText.text = "0";
+            var goodBalls = FindObjectsByType<Ball>(FindObjectsSortMode.None);
+            foreach (var goodBall in goodBalls)
+            {
+                Destroy(goodBall.gameObject);
+            }
         }
 
 
@@ -92,8 +121,12 @@ namespace Assets
         }
         public void AddCoins(int coins)
         {
-            this.gameData.Coins = Mathf.Min(coins + this.gameData.Coins, this.gameData.Storage);
-            Text.text = this.gameData.Coins.ToString();
+            if (!youLose)
+            {
+                this.gameData.Coins = Mathf.Min(coins + this.gameData.Coins, this.gameData.Storage);
+                Text.text = this.gameData.Coins.ToString();
+                return;
+            }
             
         }
 
@@ -101,6 +134,18 @@ namespace Assets
         {
             if(!gameOver && enemyBuildings.All(t => t.IsDestroyed()))
             {
+
+                if (!didKillEnemies)
+                {
+                    didKillEnemies = true;
+                    var enemies = FindObjectsByType<Enemy>(FindObjectsSortMode.None);
+                    foreach (var enemy in enemies)
+                    {
+                        Destroy(enemy.gameObject);
+                    }
+                }
+
+
                 CountdownText.enabled = true;
 
                 countdownTimer += Time.deltaTime;
@@ -114,6 +159,7 @@ namespace Assets
                     GoHomeScreen.SetActive(true);
                     enemyBuildings.ForEach(building => { building.textMesh.enabled = false; building.SetGameOver(); });
                     gameOver = true;
+                    FindAnyObjectByType<Cannon>().SetGameOver();
                     homeScreenCoinText.text = (this.gameData.Coins - startCoins).ToString();
                     return;
 

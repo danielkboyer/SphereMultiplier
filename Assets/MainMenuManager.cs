@@ -4,6 +4,10 @@ using Assets;
 using Assets.Scripts;
 using UnityEngine.UI;
 using UnityEngine.SceneManagement;
+using Unity.Services.Core;
+using Unity.Services.Analytics;
+using Unity.Services.Core.Environments;
+
 public class MainMenuManager : MonoBehaviour
 {
 
@@ -28,6 +32,9 @@ public class MainMenuManager : MonoBehaviour
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
+
+
+       
         treasureBox = FindFirstObjectByType<TreasureBox>();
 
         var gameData = GameStorage.GetInstance().GetGameData();

@@ -1,5 +1,8 @@
 using Assets.Scripts;
 using System.Collections;
+using Unity.Services.Analytics;
+using Unity.Services.Core;
+using Unity.Services.Core.Environments;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
@@ -23,6 +26,16 @@ public class BlockSpawner : MonoBehaviour
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
+        if (Debug.isDebugBuild)
+        {
+            var options = new InitializationOptions();
+            options.SetEnvironmentName("production");
+
+            UnityServices.InitializeAsync(options);
+            AnalyticsService.Instance.StartDataCollection();
+
+        }
+
         BattleUI.SetActive(false);
         ShootUI.SetActive(true);
         gameData = GameStorage.GetInstance().GetGameData();
@@ -56,7 +69,10 @@ public class BlockSpawner : MonoBehaviour
 
     public void Battle()
     {
-
+        var mainMenuProgressEvent = new MainMenuProgress();
+        mainMenuProgressEvent.GridDestroyed = gameData.MainMenuLevel.blocks.FindAll(x => x <= 0).Count;
+        mainMenuProgressEvent.TowerDestroyed = gameData.MainMenuLevel.BuildingHealth;
+        AnalyticsService.Instance.RecordEvent(mainMenuProgressEvent);
         SceneManager.LoadScene("Level" + gameData.Level, LoadSceneMode.Single);
     }
 
@@ -71,7 +87,7 @@ public class BlockSpawner : MonoBehaviour
 
     IEnumerator SetButtonActive()
     {
-
+    
         yield return new WaitForSeconds(1);
         BattleUI.SetActive(true);
 

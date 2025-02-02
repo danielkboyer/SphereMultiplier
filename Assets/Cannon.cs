@@ -38,6 +38,8 @@ public class Cannon : MonoBehaviour
 
     public Renderer[] ChangeRenderers;
     private Color[] originalMaterials;
+
+    private bool isGameOver = false;
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
@@ -49,7 +51,10 @@ public class Cannon : MonoBehaviour
         originalMaterials = ChangeRenderers.Select(t=>new Color(t.material.color.r,t.material.color.g,t.material.color.b,t.material.color.a)).ToArray();
     }
 
-
+    public void SetGameOver()
+    {
+        isGameOver = true;
+    }
 
     bool CanShootBigBall()
     {
@@ -159,6 +164,10 @@ public class Cannon : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        if (isGameOver)
+        {
+            return;
+        }
         lastTimeTouched += Time.deltaTime;
         HandleTouch();
         Shoot(Input.touchCount > 0);
