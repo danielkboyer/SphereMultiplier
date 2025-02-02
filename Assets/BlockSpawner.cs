@@ -26,15 +26,20 @@ public class BlockSpawner : MonoBehaviour
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
+        var options = new InitializationOptions();
         if (!Debug.isDebugBuild)
         {
-            var options = new InitializationOptions();
             options.SetEnvironmentName("production");
-
-            UnityServices.InitializeAsync(options);
-            AnalyticsService.Instance.StartDataCollection();
-
         }
+        else
+        {
+            options.SetEnvironmentName("dev");
+        }
+
+
+
+        UnityServices.InitializeAsync(options);
+        AnalyticsService.Instance.StartDataCollection();
 
         BattleUI.SetActive(false);
         ShootUI.SetActive(true);
@@ -52,9 +57,9 @@ public class BlockSpawner : MonoBehaviour
         for (int i = 0; i < rowSize; i++)
         {
             for (int j = 0; j < columnSize; j++)
-            {   
+            {
                 var blockId = i + j * rowSize;
-                if(gameData.MainMenuLevel.blocks[blockId] <= 0)
+                if (gameData.MainMenuLevel.blocks[blockId] <= 0)
                 {
                     continue;
                 }
@@ -87,11 +92,11 @@ public class BlockSpawner : MonoBehaviour
 
     IEnumerator SetButtonActive()
     {
-    
+
         yield return new WaitForSeconds(1);
         BattleUI.SetActive(true);
 
-      
+
     }
 
     // Update is called once per frame

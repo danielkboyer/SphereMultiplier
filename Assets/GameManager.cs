@@ -24,6 +24,7 @@ namespace Assets
         private List<EnemyBuilding> enemyBuildings;
 
         public GameObject GoHomeScreen;
+        public GameObject YouLoseScreen;
         public TextMeshProUGUI homeScreenCoinText;
         public float CountdownTime = 4.99f;
         private float countdownTimer = 0;
@@ -44,7 +45,6 @@ namespace Assets
         {
 
             Debug.Log("Next clicked");
-
             var levelFinished = new LevelFinished();
             levelFinished.UserWonLevel = !youLose;
             levelFinished.Level = gameData.Level;
@@ -70,6 +70,7 @@ namespace Assets
             CountdownText.enabled = false;
             enemyBuildings = FindObjectsByType<EnemyBuilding>(FindObjectsSortMode.None).ToList();
             GoHomeScreen.SetActive(false);
+            YouLoseScreen.SetActive(false);
             originalCountdownTextFontSize = CountdownText.fontSize;
             Coin.GetComponent<Collider>().enabled = false;
         }
@@ -81,7 +82,8 @@ namespace Assets
             gameOver = true;
             FindAnyObjectByType<Cannon>().SetGameOver();
             CountdownText.enabled = false;
-            GoHomeScreen.SetActive(true);
+            YouLoseScreen.SetActive(true);
+            GoHomeScreen.SetActive(false);
             homeScreenCoinText.text = "0";
             var goodBalls = FindObjectsByType<Ball>(FindObjectsSortMode.None);
             foreach (var goodBall in goodBalls)
@@ -164,6 +166,7 @@ namespace Assets
                     Debug.Log("You won");
                     CountdownText.enabled = false;
                     GoHomeScreen.SetActive(true);
+                    YouLoseScreen.SetActive(false);
                     enemyBuildings.ForEach(building => { building.textMesh.enabled = false; building.SetGameOver(); });
                     gameOver = true;
                     FindAnyObjectByType<Cannon>().SetGameOver();
