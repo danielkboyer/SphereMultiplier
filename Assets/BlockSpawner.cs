@@ -26,7 +26,7 @@ public class BlockSpawner : MonoBehaviour
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
-        if (Debug.isDebugBuild)
+        if (!Debug.isDebugBuild)
         {
             var options = new InitializationOptions();
             options.SetEnvironmentName("production");
