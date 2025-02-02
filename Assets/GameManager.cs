@@ -37,6 +37,9 @@ namespace Assets
 
         public float countDownSizeAdjustment = 50;
         private float originalCountdownTextFontSize;
+
+
+   
         public void OnNextClicked()
         {
 
@@ -50,10 +53,14 @@ namespace Assets
             {
                 gameData.Level++;
                 GameStorage.GetInstance().SetGameData(gameData);
+                SceneManager.LoadScene("MainMenu", LoadSceneMode.Single);
+                return;
             }
 
-          
-            SceneManager.LoadScene("MainMenu", LoadSceneMode.Single);
+            SceneManager.LoadScene("Level"+gameData.Level, LoadSceneMode.Single);
+
+
+
         }
         private void Start()
         {
