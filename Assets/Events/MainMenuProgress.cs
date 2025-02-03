@@ -16,5 +16,7 @@ namespace Assets.Scripts
 
         public int GridDestroyed { set { SetParameter("GridDestroyed", value); } }
         public int TowerDestroyed { set { SetParameter("TowerDestroyed", value); } }
+
+        public int Level { set { SetParameter("Level", value); } }
     }
 }

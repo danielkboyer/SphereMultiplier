@@ -77,6 +77,7 @@ public class BlockSpawner : MonoBehaviour
         var mainMenuProgressEvent = new MainMenuProgress();
         mainMenuProgressEvent.GridDestroyed = gameData.MainMenuLevel.blocks.FindAll(x => x <= 0).Count;
         mainMenuProgressEvent.TowerDestroyed = gameData.MainMenuLevel.BuildingHealth;
+        mainMenuProgressEvent.Level = gameData.Level;
         AnalyticsService.Instance.RecordEvent(mainMenuProgressEvent);
         SceneManager.LoadScene("Level" + gameData.Level, LoadSceneMode.Single);
     }
