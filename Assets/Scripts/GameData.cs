@@ -22,9 +22,8 @@ namespace Assets.Scripts
 
         public MainMenuLevel MainMenuLevel;
 
-        public int Storage;
         public int Level;
-        public GameData(int coins, float cannonFireRate, int smallBallHealth, int bigBallHealth, int smallEnemyHealth, int bigEnemyHealth, int smallBallAttack, int bigBallAttack, int smallEnemyAttack, int bigEnemyAttack, int level, int storage, MainMenuLevel mainMenuLevel)
+        public GameData(int coins, float cannonFireRate, int smallBallHealth, int bigBallHealth, int smallEnemyHealth, int bigEnemyHealth, int smallBallAttack, int bigBallAttack, int smallEnemyAttack, int bigEnemyAttack, int level, MainMenuLevel mainMenuLevel)
         {
             this.Coins = coins;
             CannonFireRate = cannonFireRate;
@@ -37,7 +36,6 @@ namespace Assets.Scripts
             SmallEnemyAttack = smallEnemyAttack;
             BigEnemyAttack = bigEnemyAttack;
             Level = level;
-            Storage = storage;
             MainMenuLevel = mainMenuLevel;
         }
     }

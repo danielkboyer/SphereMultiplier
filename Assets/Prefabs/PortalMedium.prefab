@@ -260,6 +260,8 @@ MonoBehaviour:
     from: {fileID: 0}
     speed: 2
     enabled: 0
+  BigBall: {fileID: 970248571221768902, guid: f18f09a83bd151744a9651f90d43b648, type: 3}
+  SmallBall: {fileID: 970248571221768902, guid: 0911ca5a2b7b5bb4da94d0ad333d83d4, type: 3}
   newBallMultiplier: 2
 --- !u!54 &6791796775725142543
 Rigidbody:
@@ -268,10 +270,10 @@ Rigidbody:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 3078200797025454143}
-  serializedVersion: 4
+  serializedVersion: 5
   m_Mass: 1
-  m_Drag: 0
-  m_AngularDrag: 0.05
+  m_LinearDamping: 0
+  m_AngularDamping: 0.05
   m_CenterOfMass: {x: 0, y: 0, z: 0}
   m_InertiaTensor: {x: 1, y: 1, z: 1}
   m_InertiaRotation: {x: 0, y: 0, z: 0, w: 1}

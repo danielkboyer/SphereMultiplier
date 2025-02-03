@@ -132,7 +132,7 @@ namespace Assets
         {
             if (!youLose)
             {
-                this.gameData.Coins = Mathf.Min(coins + this.gameData.Coins, this.gameData.Storage);
+                this.gameData.Coins = coins + this.gameData.Coins;
                 Text.text = this.gameData.Coins.ToString();
                 return;
             }

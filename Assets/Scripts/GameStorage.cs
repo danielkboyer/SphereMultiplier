@@ -26,7 +26,6 @@ namespace Assets.Scripts
 
         private const string LEVEL = "Level";
 
-        private const string STORAGE = "Storage";
 
         private const string MAIN_MENU_NUMBER_OF_BLOCKS = "Main_Menu_Number_Of_Blocks";
         private const string MAIN_MENU_BUILDING_HEALTH = "Main_Menu_Building_Health";
@@ -52,10 +51,9 @@ namespace Assets.Scripts
 
                 var level = PlayerPrefs.GetInt(LEVEL, 1);
 
-                var storage = PlayerPrefs.GetInt(STORAGE, 2000);
 
                 var mainMenuLevel = GetMainMenuLevel();
-                data = new GameData(coins, cannonFireRate, smallBallHealth, bigBallHealth,smallEnemyHealth,bigEnemyHealth, smallBallAttack,bigBallAttack,smallEnemyAttack,bigEnemyAttack, level, storage, mainMenuLevel);
+                data = new GameData(coins, cannonFireRate, smallBallHealth, bigBallHealth,smallEnemyHealth,bigEnemyHealth, smallBallAttack,bigBallAttack,smallEnemyAttack,bigEnemyAttack, level, mainMenuLevel);
             }
             return data;
         }
@@ -87,7 +85,6 @@ namespace Assets.Scripts
 
             PlayerPrefs.SetInt(LEVEL, data.Level);
 
-            PlayerPrefs.SetInt(STORAGE, data.Storage);
             SaveMainMenuData(data.MainMenuLevel);
 
             PlayerPrefs.Save();

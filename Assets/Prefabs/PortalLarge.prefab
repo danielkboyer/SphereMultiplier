@@ -152,6 +152,8 @@ MonoBehaviour:
     from: {fileID: 0}
     speed: 2
     enabled: 0
+  BigBall: {fileID: 970248571221768902, guid: f18f09a83bd151744a9651f90d43b648, type: 3}
+  SmallBall: {fileID: 970248571221768902, guid: 0911ca5a2b7b5bb4da94d0ad333d83d4, type: 3}
   newBallMultiplier: 2
 --- !u!54 &3061226129470031684
 Rigidbody:

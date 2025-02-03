@@ -9,6 +9,7 @@ public class Ball : SharedBall
     {
         get { return false; }
     }
+    public bool isBigBall;
     public float speed = 3;
     public float maxSpeed = 5;
     public float forceApplyTime = .1f;
@@ -22,12 +23,17 @@ public class Ball : SharedBall
     public float enemyBuildingAttractDistance;
 
 
+    private float cantBePushedBack = .3f;
+    private float initialZPos = 0;
+
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
         lastAppliedTime = forceApplyTime;
         var rigidBody = GetComponent<Rigidbody>();
         enemyBuildings = FindObjectsByType<EnemyBuilding>(FindObjectsSortMode.None).ToArray();
+
+        initialZPos = transform.position.z;
     }
 
     private void OnTriggerExit(Collider other)
@@ -101,6 +107,13 @@ public class Ball : SharedBall
 
             }
             rigidBody.AddForce(new Vector3(0, 0, speed));
+        }
+
+        if(cantBePushedBack > 0)
+        {
+            cantBePushedBack -= Time.deltaTime;
+            initialZPos = Mathf.Max(initialZPos, this.gameObject.transform.position.z);
+            this.gameObject.transform.position = new Vector3(this.gameObject.transform.position.x, this.gameObject.transform.position.y, initialZPos);
         }
 
     }

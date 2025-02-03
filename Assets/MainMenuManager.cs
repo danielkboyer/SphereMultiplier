@@ -60,12 +60,10 @@ public class MainMenuManager : MonoBehaviour
         var cannonPurchase = Buyer.GetCannonFirePurchase(gameData.CannonFireRate);
         var ballPurchase = Buyer.GetBallPurchase(gameData.SmallBallHealth);
         var bigBallPurchase = Buyer.GetBigBallPurchase(gameData.BigBallHealth);
-        var storagePurchase = Buyer.GetStoragePurchase(gameData.Storage);
 
         GunButton.interactable = gameData.Coins > cannonPurchase.Cost;
         BallButton.interactable = gameData.Coins > ballPurchase.Cost;
         BigBallButton.interactable = gameData.Coins > bigBallPurchase.Cost;
-        StorageButton.interactable = gameData.Coins > storagePurchase.Cost;
 
         GunRateText.text = gameData.CannonFireRate.ToString() + "s CD";
         GunRateCost.text = cannonPurchase.Cost.ToString();
@@ -76,31 +74,10 @@ public class MainMenuManager : MonoBehaviour
         BigBallHealthText.text = gameData.BigBallHealth.ToString() + " Health";
         BigBallHealthCost.text = bigBallPurchase.Cost.ToString();
 
-        StorageText.text = gameData.Storage.ToString() + " MAX";
-        StorageCost.text = Buyer.GetStoragePurchase(gameData.Storage).Cost.ToString();
     }
 
 
 
-    public void UpgradeStorage()
-    {
-        var gameData = GameStorage.GetInstance().GetGameData();
-
-        var storagePurchase = Buyer.GetStoragePurchase(gameData.Storage);
-
-        if (gameData.Coins < storagePurchase.Cost)
-        {
-            return;
-        }
-
-        gameData.Coins -= storagePurchase.Cost;
-        gameData.Storage = storagePurchase.NewValue;
-
-        GameStorage.GetInstance().SetGameData(gameData);
-
-        UpdateTextFromGameData(gameData);
-        treasureBox.UpdateCoins();
-    }
     public void UpgradeGun()
     {
         var gameData = GameStorage.GetInstance().GetGameData();

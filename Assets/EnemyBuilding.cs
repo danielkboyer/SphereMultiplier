@@ -89,7 +89,7 @@ public class EnemyBuilding : MonoBehaviour
     {
         gameOver = true;
     }
-    private void OnCollisionEnter(Collision collision)
+    private void OnTriggerEnter(Collider collision)
     {
         if (gameOver)
         {
