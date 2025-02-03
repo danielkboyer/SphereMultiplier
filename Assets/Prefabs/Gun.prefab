@@ -479,9 +479,9 @@ MonoBehaviour:
   ballShootPosition: {fileID: 1875834704857579034}
   mask: {fileID: 2673576523201250125}
   barFill: {fileID: 2745219561708590206}
-  barFillColor: {r: 0.32395872, g: 0.43010777, b: 0.754717, a: 1}
+  barFillColor: {r: 0, g: 0.4117647, b: 0.78431374, a: 1}
   barFullColor: {r: 1, g: 0.9083079, b: 0, a: 1}
-  cannonBarFullColor: {r: 1, g: 0.8039216, b: 0.14901961, a: 0}
+  cannonBarFullColor: {r: 1, g: 0.5901842, b: 0.033018887, a: 0}
   ChangeRenderers:
   - {fileID: 1821211811542621482}
   - {fileID: 1821211811542621486}
@@ -754,6 +754,18 @@ PrefabInstance:
       propertyPath: m_Name
       value: Cannon_12
       objectReference: {fileID: 0}
+    - target: {fileID: 169151000001053020, guid: 6f47d09379e4841039d5785ff539e3c8, type: 3}
+      propertyPath: 'm_Materials.Array.data[0]'
+      value: 
+      objectReference: {fileID: 2100000, guid: 82f5012657f590e4a9ea649ca4dbe319, type: 2}
+    - target: {fileID: 169151000001053116, guid: 6f47d09379e4841039d5785ff539e3c8, type: 3}
+      propertyPath: 'm_Materials.Array.data[0]'
+      value: 
+      objectReference: {fileID: 2100000, guid: 7bedc2acbc0f646459f64c39fd357cea, type: 2}
+    - target: {fileID: 169151000001053118, guid: 6f47d09379e4841039d5785ff539e3c8, type: 3}
+      propertyPath: 'm_Materials.Array.data[0]'
+      value: 
+      objectReference: {fileID: 2100000, guid: e660a302cd4c29b4f9dba494e35e186c, type: 2}
     m_RemovedComponents:
     - {fileID: 169150999996772668, guid: 6f47d09379e4841039d5785ff539e3c8, type: 3}
     - {fileID: 169150999996772664, guid: 6f47d09379e4841039d5785ff539e3c8, type: 3}
