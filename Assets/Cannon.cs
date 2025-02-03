@@ -33,7 +33,7 @@ public class Cannon : MonoBehaviour
     public Transform mask;
     public SpriteRenderer barFill;
     public Color barFillColor;
-    public Color barFullColor;
+   // public Color barFullColor;
     public Color cannonBarFullColor;
 
     public Renderer[] ChangeRenderers;
@@ -110,7 +110,7 @@ public class Cannon : MonoBehaviour
         if (CanShootBigBall())
         {
             canShootBigBallTime += Time.deltaTime;
-            barFill.color = barFullColor;
+            barFill.color = cannonBarFullColor;
             percentage = 1;
             ChangeMaterial(cannonBarFullColor);
         }

@@ -1,5 +1,6 @@
 using Assets.Scripts;
 using System.Collections;
+using TMPro;
 using Unity.Services.Analytics;
 using Unity.Services.Core;
 using Unity.Services.Core.Environments;
@@ -21,6 +22,10 @@ public class BlockSpawner : MonoBehaviour
 
     public GameObject BattleUI;
     public GameObject ShootUI;
+
+    public TextMeshPro EnemyBuildingHealth;
+
+    public TextMeshProUGUI DisplayCoins;
 
     public Camera myCamera;
     // Start is called once before the first execution of Update after the MonoBehaviour is created
@@ -44,7 +49,8 @@ public class BlockSpawner : MonoBehaviour
         BattleUI.SetActive(false);
         ShootUI.SetActive(true);
         gameData = GameStorage.GetInstance().GetGameData();
-
+        DisplayCoins.text = gameData.Coins.ToString();
+        EnemyBuildingHealth.text = gameData.MainMenuLevel.BuildingHealth.ToString();
         float planeWidth = Plane.GetComponent<Renderer>().bounds.size.x;
         float blockWidth = BlockToSpawn.GetComponent<Renderer>().bounds.size.x;
         int numberOfBlocks = gameData.MainMenuLevel.numberOfBlocks;
@@ -72,11 +78,19 @@ public class BlockSpawner : MonoBehaviour
         }
     }
 
+    public void BuildingHit()
+    {
+        gameData.MainMenuLevel.BuildingHealth -= 100;
+        EnemyBuildingHealth.text = gameData.MainMenuLevel.BuildingHealth.ToString();
+        GameStorage.GetInstance().SetGameData(gameData, true);
+    }
+
     public void Battle()
     {
         var mainMenuProgressEvent = new MainMenuProgress();
         mainMenuProgressEvent.GridDestroyed = gameData.MainMenuLevel.blocks.FindAll(x => x <= 0).Count;
         mainMenuProgressEvent.TowerDestroyed = gameData.MainMenuLevel.BuildingHealth;
+       
         mainMenuProgressEvent.Level = gameData.Level;
         AnalyticsService.Instance.RecordEvent(mainMenuProgressEvent);
         SceneManager.LoadScene("Level" + gameData.Level, LoadSceneMode.Single);
@@ -127,6 +141,7 @@ public class BlockSpawner : MonoBehaviour
                 if (Physics.Raycast(myRay, out myHit))
                 {
                     gameData.Coins -= coinCost;
+                    DisplayCoins.text = gameData.Coins.ToString();
                     Instantiate(ShootBall, new Vector3(myHit.point.x, 0, -25), Quaternion.identity);
                 }
 

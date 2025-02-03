@@ -1611,7 +1611,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 5104451583744487083, guid: 5340cd0a91d43b4479ce75afd022da11, type: 3}
       propertyPath: barFullColor.g
-      value: 0.9083079
+      value: 0.5882353
       objectReference: {fileID: 0}
     - target: {fileID: 5104451583744487083, guid: 5340cd0a91d43b4479ce75afd022da11, type: 3}
       propertyPath: barFullColor.r
