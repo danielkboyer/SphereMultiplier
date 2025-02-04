@@ -11,6 +11,7 @@ namespace Assets.Scripts
     {
         RegularGun,
         ShotGun,
+        LaserGun,
     }
     public class CannonData
     {

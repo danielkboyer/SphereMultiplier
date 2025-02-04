@@ -49,6 +49,11 @@ public class BlockSpawner : MonoBehaviour
         BattleUI.SetActive(false);
         ShootUI.SetActive(true);
         gameData = GameStorage.GetInstance().GetGameData();
+        SetupMainMenuLevel();
+    }
+
+    void SetupMainMenuLevel()
+    {
         DisplayCoins.text = gameData.Coins.ToString();
         EnemyBuildingHealth.text = gameData.MainMenuLevel.BuildingHealth.ToString();
         float planeWidth = Plane.GetComponent<Renderer>().bounds.size.x;
@@ -82,7 +87,18 @@ public class BlockSpawner : MonoBehaviour
     {
         gameData.MainMenuLevel.BuildingHealth -= 100;
         EnemyBuildingHealth.text = gameData.MainMenuLevel.BuildingHealth.ToString();
-        GameStorage.GetInstance().SetGameData(gameData, true);
+        if(gameData.MainMenuLevel.BuildingHealth <= 0)
+        {
+            var unlockCannon = new CannonData(gameData.MainMenuLevel.cannonToUnlock);
+            gameData.UnlockedCannons.Add(unlockCannon);
+            gameData.SelectedCannon = unlockCannon;
+            gameData.MainMenuLevel = MainMenuLevel.GetDefaultLevel(gameData.MainMenuLevel.level + 1);
+
+            SetupMainMenuLevel();
+
+        }
+      
+       
     }
 
     public void Battle()
@@ -93,6 +109,7 @@ public class BlockSpawner : MonoBehaviour
        
         mainMenuProgressEvent.Level = gameData.Level;
         AnalyticsService.Instance.RecordEvent(mainMenuProgressEvent);
+        GameStorage.GetInstance().SetGameData(gameData, true);
         SceneManager.LoadScene("Level" + gameData.Level, LoadSceneMode.Single);
     }
 
@@ -100,8 +117,6 @@ public class BlockSpawner : MonoBehaviour
     public void BlockHit(int indexOfBlock)
     {
         gameData.MainMenuLevel.blocks[indexOfBlock] -= 1;
-
-        GameStorage.GetInstance().SetGameData(gameData, true);
     }
 
 
