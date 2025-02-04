@@ -24,6 +24,9 @@ namespace Assets.Scripts
         private const string SMALL_ENEMY_ATTACK = "Small_Enemy_Attack";
         private const string BIG_ENEMY_ATTACK = "Big_Enemy_Attack";
 
+
+        private const string SELECTED_CANNON = "Selected_Cannon";
+        private const string UNLOCKED_CANNONS = "Unlocked_Cannons";
         private const string LEVEL = "Level";
 
 
@@ -51,9 +54,11 @@ namespace Assets.Scripts
 
                 var level = PlayerPrefs.GetInt(LEVEL, 1);
 
+                CannonType selectedCannon = (CannonType)PlayerPrefs.GetInt(SELECTED_CANNON, (int)CannonType.RegularGun);
+                List<CannonType> unlockedCannons = PlayerPrefs.GetString(UNLOCKED_CANNONS, ((int)CannonType.ShotGun).ToString()).Split(",").Select(cannon=> (CannonType)int.Parse(cannon)).ToList();
 
                 var mainMenuLevel = GetMainMenuLevel();
-                data = new GameData(coins, cannonFireRate, smallBallHealth, bigBallHealth,smallEnemyHealth,bigEnemyHealth, smallBallAttack,bigBallAttack,smallEnemyAttack,bigEnemyAttack, level, mainMenuLevel);
+                data = new GameData(coins, cannonFireRate, smallBallHealth, bigBallHealth,smallEnemyHealth,bigEnemyHealth, smallBallAttack,bigBallAttack,smallEnemyAttack,bigEnemyAttack, level, mainMenuLevel, new CannonData(selectedCannon),unlockedCannons.Select(uC=> new CannonData(uC)).ToList());
             }
             return data;
         }
@@ -85,10 +90,14 @@ namespace Assets.Scripts
 
             PlayerPrefs.SetInt(LEVEL, data.Level);
 
+            PlayerPrefs.SetInt(SELECTED_CANNON, (int)data.SelectedCannon.type);
+            PlayerPrefs.SetString(UNLOCKED_CANNONS, string.Join(",", data.UnlockedCannons.Select(cannon => (int)cannon.type).ToList()));
+
             SaveMainMenuData(data.MainMenuLevel);
 
             PlayerPrefs.Save();
         }
+
         private MainMenuLevel GetMainMenuLevel()
         {
             var menuLevel = PlayerPrefs.GetInt(MAIN_MENU_LEVEL, 1);

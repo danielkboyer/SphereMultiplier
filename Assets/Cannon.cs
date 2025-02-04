@@ -1,10 +1,14 @@
 using Assets.Scripts;
+using System;
 using System.Linq;
 using TMPro;
 using UnityEngine;
 
 public class Cannon : MonoBehaviour
 {
+
+    public GameObject RegularGun;
+    public GameObject ShotGun;
 
     public Animator CannonAnimator;
     private float? touchStartPos = null;
@@ -17,7 +21,6 @@ public class Cannon : MonoBehaviour
     public float bigBallTime = 8;
     private float bigBallTimeCurrent = 0;
     private float shotWaitTime;
-    public float shotCooldown;
     public float timeBetweenBullets = .1f;
     public int shootAmount = 3;
 
@@ -36,9 +39,14 @@ public class Cannon : MonoBehaviour
    // public Color barFullColor;
     public Color cannonBarFullColor;
 
+    //This is regular gun
     public Renderer[] ChangeRenderers;
+    public Renderer[] ShotGunRenderers;
+
+    private Renderer[] Renderers;
     private Color[] originalMaterials;
 
+    private CannonData selectedCannon;
     private bool isGameOver = false;
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
@@ -46,9 +54,25 @@ public class Cannon : MonoBehaviour
         //UnityEngine.InputSystem.EnhancedTouch.TouchSimulation.Enable();
 
         var gameData = GameStorage.GetInstance().GetGameData();
+
+        selectedCannon = gameData.SelectedCannon;
+        RegularGun.SetActive(false);
+        ShotGun.SetActive(false);
+        Debug.Log("Selected cannon: " + selectedCannon);
+        switch (selectedCannon.type)
+        {
+            case CannonType.RegularGun:
+                RegularGun.SetActive(true);
+                Renderers = ChangeRenderers;
+                break;
+            case CannonType.ShotGun:
+                ShotGun.SetActive(true);
+                Renderers = ShotGunRenderers;
+                break;
+        }
       
         CannonAnimator.SetFloat("ShootTime", 1/timeBetweenBullets);
-        originalMaterials = ChangeRenderers.Select(t=>new Color(t.material.color.r,t.material.color.g,t.material.color.b,t.material.color.a)).ToArray();
+        originalMaterials = Renderers.Select(t=>new Color(t.material.color.r,t.material.color.g,t.material.color.b,t.material.color.a)).ToArray();
     }
 
     public void SetGameOver()
@@ -65,15 +89,15 @@ public class Cannon : MonoBehaviour
     {
        
 
-        for(int i = 0; i < ChangeRenderers.Length; i++)
+        for(int i = 0; i < Renderers.Length; i++)
         {
             if (color == null)
             {
-                ChangeRenderers[i].material.color = originalMaterials[i];
+                Renderers[i].material.color = originalMaterials[i];
             }
             else
             {
-                ChangeRenderers[i].material.color = color.Value;
+                Renderers[i].material.color = color.Value;
             }
         }
     }
@@ -93,7 +117,15 @@ public class Cannon : MonoBehaviour
                     CannonAnimator.SetTrigger("Shoot");
                     ChangeMaterial(null);
                     bigBallTimeCurrent = 0;
-                    Instantiate(bigBall, ballShootPosition.position, Quaternion.identity);
+                    switch(selectedCannon.type)
+                    {
+                        case CannonType.RegularGun:
+                            RegularGunShootBig();
+                            break;
+                        case CannonType.ShotGun:
+                            ShotGunShootBig();
+                            break;
+                    }
                 }
             }
 
@@ -127,9 +159,17 @@ public class Cannon : MonoBehaviour
         if (shotWaitTime <= 0 && isTouching)
         {
          
-            shotWaitTime = shotCooldown;
+            shotWaitTime = selectedCannon.shotCooldown;
             CannonAnimator.SetTrigger("Shoot");
-            Instantiate(ball, ballShootPosition.position, Quaternion.identity);
+            switch(selectedCannon.type)
+            {
+                case CannonType.RegularGun:
+                    RegularGunShoot();
+                    break;
+                case CannonType.ShotGun:
+                    ShotGunShoot();
+                    break;
+            }
 
         }
 
@@ -185,6 +225,33 @@ public class Cannon : MonoBehaviour
         {
             TutorialText.text = "";
         }
+    }
+
+
+
+    void RegularGunShoot()
+    {
+        Instantiate(ball, ballShootPosition.position, Quaternion.identity);
+    }
+
+    void RegularGunShootBig()
+    {
+        Instantiate(bigBall, ballShootPosition.position, Quaternion.identity);
+    }
+
+
+    void ShotGunShoot()
+    {
+        var ballWidth = ball.GetComponent<Renderer>().bounds.size.x;
+
+        Instantiate(ball, ballShootPosition.position + new Vector3(ballWidth,0,0), Quaternion.identity);
+        Instantiate(ball, ballShootPosition.position, Quaternion.identity);
+        Instantiate(ball, ballShootPosition.position + new Vector3(-ballWidth, 0, 0), Quaternion.identity);
+    }
+
+    void ShotGunShootBig()
+    {
+        Instantiate(bigBall, ballShootPosition.position, Quaternion.identity);
     }
 
 }
