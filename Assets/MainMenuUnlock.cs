@@ -13,7 +13,7 @@ public class MainMenuUnlock : MonoBehaviour
         ShotGun.SetActive(false);
         LaserGun.SetActive(false);
 
-        switch(gameData.Level)
+        switch(gameData.MainMenuLevel.level)
         {
             case 1:
                 ShotGun.SetActive(true);
