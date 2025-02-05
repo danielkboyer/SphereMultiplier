@@ -56,11 +56,11 @@ public class BlockSpawner : MonoBehaviour
         TutorialUI.SetActive(false);
         gameData = GameStorage.GetInstance().GetGameData();
 
-        if(gameData.Level < 3)
+        if (gameData.Level < 3)
         {
             TutorialUI.SetActive(true);
         }
-        if(gameData.Coins < 100)
+        if (gameData.Coins < 100)
         {
             BattleUI.SetActive(true);
             ShootUI.SetActive(false);
@@ -103,7 +103,7 @@ public class BlockSpawner : MonoBehaviour
     {
         gameData.MainMenuLevel.BuildingHealth -= 100;
         EnemyBuildingHealth.text = gameData.MainMenuLevel.BuildingHealth.ToString();
-        if(gameData.MainMenuLevel.BuildingHealth <= 0)
+        if (gameData.MainMenuLevel.BuildingHealth <= 0)
         {
             var unlockCannon = new CannonData(gameData.MainMenuLevel.cannonToUnlock);
             gameData.UnlockedCannons.Add(unlockCannon);
@@ -113,14 +113,14 @@ public class BlockSpawner : MonoBehaviour
             FindObjectsByType<ShootBall>(FindObjectsSortMode.None).ToList().ForEach(x => { Destroy(x.gameObject); gameData.Coins += 100; });
             GameStorage.GetInstance().SetGameData(gameData, true);
             BurnEffects.SetActive(true);
-            
-          
+
+
 
             StartCoroutine(TriggerExlosions());
 
         }
-      
-       
+
+
     }
 
 
@@ -129,7 +129,7 @@ public class BlockSpawner : MonoBehaviour
         var mainMenuProgressEvent = new MainMenuProgress();
         mainMenuProgressEvent.GridDestroyed = gameData.MainMenuLevel.blocks.FindAll(x => x <= 0).Count;
         mainMenuProgressEvent.TowerDestroyed = gameData.MainMenuLevel.BuildingHealth;
-       
+
         mainMenuProgressEvent.Level = gameData.Level;
         AnalyticsService.Instance.RecordEvent(mainMenuProgressEvent);
         GameStorage.GetInstance().SetGameData(gameData, true);
@@ -145,7 +145,7 @@ public class BlockSpawner : MonoBehaviour
     IEnumerator TriggerExlosions()
     {
         // Randomly spawns explosions between plane start and zEnd zStart
-        for(int i = 0; i < 15; i++)
+        for (int i = 0; i < 15; i++)
         {
             float planeWidth = Plane.GetComponent<Renderer>().bounds.size.x;
             float randomX = Random.Range(-planeWidth / 2, planeWidth / 2);
@@ -156,7 +156,7 @@ public class BlockSpawner : MonoBehaviour
 
             Collider[] hitColliders = Physics.OverlapSphere(spawnPosition, 10);
 
-            foreach(var hitCollider in hitColliders)
+            foreach (var hitCollider in hitColliders)
             {
                 if (hitCollider.gameObject.GetComponent<ShootBlock>() != null)
                 {
@@ -165,7 +165,7 @@ public class BlockSpawner : MonoBehaviour
                 }
             }
 
-            if(i == 10)
+            if (i == 10)
             {
                 foreach (var item in FindObjectsByType<MoveObjectTo>(FindObjectsSortMode.None))
                 {
@@ -184,7 +184,7 @@ public class BlockSpawner : MonoBehaviour
 
     IEnumerator SetButtonActive()
     {
-        while(FindAnyObjectByType<ShootBall>() != null)
+        while (FindAnyObjectByType<ShootBall>() != null)
         {
             yield return new WaitForSeconds(1f);
         }
