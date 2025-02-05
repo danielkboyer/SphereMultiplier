@@ -1,5 +1,6 @@
 using Assets.Scripts;
 using System.Collections;
+using System.Linq;
 using TMPro;
 using Unity.Services.Analytics;
 using Unity.Services.Core;
@@ -9,6 +10,7 @@ using UnityEngine.SceneManagement;
 
 public class BlockSpawner : MonoBehaviour
 {
+
 
     public float StartSpawnZ;
     public float EndSpawnZ;
@@ -22,6 +24,9 @@ public class BlockSpawner : MonoBehaviour
 
     public GameObject BattleUI;
     public GameObject ShootUI;
+    public GameObject TutorialUI;
+    public GameObject BurnEffects;
+    public GameObject UnlockCannonUI;
 
     public TextMeshPro EnemyBuildingHealth;
 
@@ -48,7 +53,18 @@ public class BlockSpawner : MonoBehaviour
 
         BattleUI.SetActive(false);
         ShootUI.SetActive(true);
+        TutorialUI.SetActive(false);
         gameData = GameStorage.GetInstance().GetGameData();
+
+        if(gameData.Level < 3)
+        {
+            TutorialUI.SetActive(true);
+        }
+        if(gameData.Coins < 100)
+        {
+            BattleUI.SetActive(true);
+            ShootUI.SetActive(false);
+        }
         SetupMainMenuLevel();
     }
 
@@ -94,12 +110,19 @@ public class BlockSpawner : MonoBehaviour
             gameData.SelectedCannon = unlockCannon;
             gameData.MainMenuLevel = MainMenuLevel.GetDefaultLevel(gameData.MainMenuLevel.level + 1);
 
-            SetupMainMenuLevel();
+            FindObjectsByType<ShootBall>(FindObjectsSortMode.None).ToList().ForEach(x => { Destroy(x.gameObject); gameData.Coins += 100; });
+            GameStorage.GetInstance().SetGameData(gameData, true);
+            BurnEffects.SetActive(true);
+            
+          
+
+            StartCoroutine(TriggerExlosions());
 
         }
       
        
     }
+
 
     public void Battle()
     {
@@ -119,11 +142,53 @@ public class BlockSpawner : MonoBehaviour
         gameData.MainMenuLevel.blocks[indexOfBlock] -= 1;
     }
 
+    IEnumerator TriggerExlosions()
+    {
+        // Randomly spawns explosions between plane start and zEnd zStart
+        for(int i = 0; i < 15; i++)
+        {
+            float planeWidth = Plane.GetComponent<Renderer>().bounds.size.x;
+            float randomX = Random.Range(-planeWidth / 2, planeWidth / 2);
+            float randomZ = Random.Range(StartSpawnZ, EndSpawnZ);
+            Vector3 spawnPosition = new Vector3(randomX, Plane.transform.position.y, randomZ);
+
+            // Assuming you have an explosion prefab to instantiate
+
+            Collider[] hitColliders = Physics.OverlapSphere(spawnPosition, 10);
+
+            foreach(var hitCollider in hitColliders)
+            {
+                if (hitCollider.gameObject.GetComponent<ShootBlock>() != null)
+                {
+                    var block = hitCollider.gameObject.GetComponent<Rigidbody>();
+                    block.AddExplosionForce(2000, spawnPosition, 5);
+                }
+            }
+
+            if(i == 10)
+            {
+                foreach (var item in FindObjectsByType<MoveObjectTo>(FindObjectsSortMode.None))
+                {
+                    item.MoveIt();
+                }
+            }
+
+            yield return new WaitForSeconds(0.3f);
+        }
+
+        yield return new WaitForSeconds(2f);
+
+        UnlockCannonUI.SetActive(true);
+    }
+
 
     IEnumerator SetButtonActive()
     {
+        while(FindAnyObjectByType<ShootBall>() != null)
+        {
+            yield return new WaitForSeconds(1f);
+        }
 
-        yield return new WaitForSeconds(1);
         BattleUI.SetActive(true);
 
 
@@ -158,6 +223,7 @@ public class BlockSpawner : MonoBehaviour
                     gameData.Coins -= coinCost;
                     DisplayCoins.text = gameData.Coins.ToString();
                     Instantiate(ShootBall, new Vector3(myHit.point.x, 0, -25), Quaternion.identity);
+                    TutorialUI.SetActive(false);
                 }
 
             }

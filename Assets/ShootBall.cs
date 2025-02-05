@@ -9,6 +9,7 @@ public class ShootBall : MonoBehaviour
     void Start()
     {
         randomX = Random.Range(-1f, 1f);
+        Destroy(this.gameObject, 5);
     }
 
     // Update is called once per frame
