@@ -122,9 +122,10 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   distanceToPush: 5
-  speedModifier: 0.0001
+  BadColor: {r: 0.8862745, g: 0.019607844, b: 0, a: 0}
+  pushDifficulty: 1
   text: {fileID: 6398664368842814432}
-  ballsTotal: 0
+  currentBallsTouching: 0
 --- !u!1 &293216215870741243
 GameObject:
   m_ObjectHideFlags: 0
@@ -227,7 +228,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: '0%
+  m_text: '0
 
 '
   m_isRightToLeft: 0
@@ -294,7 +295,7 @@ MonoBehaviour:
   m_VertexBufferAutoSizeReduction: 0
   m_useMaxVisibleDescender: 1
   m_pageToDisplay: 1
-  m_margin: {x: 6.447162, y: 3.2890267, z: 10.236791, w: 0.6163008}
+  m_margin: {x: 5.9865746, y: 3.2890267, z: 10.236791, w: 0.6163008}
   m_isUsingLegacyAnimationComponent: 0
   m_isVolumetricText: 0
   _SortingLayer: 0

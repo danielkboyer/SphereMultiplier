@@ -7,6 +7,9 @@ public class PushWall : MonoBehaviour
 {
     public float distanceToPush = 1.5f;
 
+    public Color BadColor;
+    private Color GoodColor;
+
     private float speedModifier = .02f;
 
     public float pushDifficulty = 1;
@@ -19,7 +22,7 @@ public class PushWall : MonoBehaviour
 
 
     //for optimization
-    private float checkBallCount = .2f;
+    private float checkBallCount = .5f;
     private float timePassed = 0;
 
     public float currentBallsTouching = 0;
@@ -29,8 +32,8 @@ public class PushWall : MonoBehaviour
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
-
-        text.text = "0%";
+        GoodColor = this.GetComponent<Renderer>().material.color;
+        text.text = "0";
         startDistance = this.transform.position.z;
         text.transform.parent = this.transform;
     }
@@ -116,13 +119,23 @@ public class PushWall : MonoBehaviour
             var goodBalls = goodBallsInContact.Count / pushDifficulty;
             var badBalls = badBallsInContact.Count / pushDifficulty;
 
-         
+
             var diff = goodBalls - badBalls;
 
             currentBallsTouching = diff;
 
             timePassed = 0;
 
+            text.text = Mathf.Abs(goodBallsInContact.Count - badBallsInContact.Count).ToString();
+            if (diff >= 0)
+            {
+                this.GetComponent<Renderer>().material.color = GoodColor;
+            }
+            else
+            {
+                this.GetComponent<Renderer>().material.color = BadColor;
+
+            }
         }
       
 
@@ -136,7 +149,7 @@ public class PushWall : MonoBehaviour
         if (newPercentage != percentage && !stopCalculating)
         {
             percentage = newPercentage;
-            text.text = percentage.ToString() + "%";
+          
         }
         if (Mathf.Abs(newPercentage) >= 100)
         {
