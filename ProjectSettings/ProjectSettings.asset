@@ -268,7 +268,7 @@ PlayerSettings:
   AndroidSplashScreenScale: 0
   androidSplashScreen: {fileID: 0}
   AndroidKeystoreName: C:/Users/danie/Documents/AndroidBuild/PortalSpawner.keystore
-  AndroidKeyaliasName: portal spawner
+  AndroidKeyaliasName: portalspawner
   AndroidEnableArmv9SecurityFeatures: 0
   AndroidEnableArm64MTE: 0
   AndroidBuildApkPerCpuArchitecture: 0

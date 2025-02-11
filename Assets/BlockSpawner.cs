@@ -126,6 +126,11 @@ public class BlockSpawner : MonoBehaviour
 
     public void Battle()
     {
+        if(gameData.Level >= GameData.MAX_LEVEL)
+        {
+            SceneManager.LoadScene("LevelsComingSoon", LoadSceneMode.Single);
+            return;
+        }
         var mainMenuProgressEvent = new MainMenuProgress();
         mainMenuProgressEvent.GridDestroyed = gameData.MainMenuLevel.blocks.FindAll(x => x <= 0).Count;
         mainMenuProgressEvent.TowerDestroyed = gameData.MainMenuLevel.BuildingHealth;
@@ -134,6 +139,7 @@ public class BlockSpawner : MonoBehaviour
         AnalyticsService.Instance.RecordEvent(mainMenuProgressEvent);
         GameStorage.GetInstance().SetGameData(gameData, true);
         SceneManager.LoadScene("Level" + gameData.Level, LoadSceneMode.Single);
+
     }
 
 

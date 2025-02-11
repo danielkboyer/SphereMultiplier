@@ -1,15 +1,13 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using System.Collections.Generic;
 
 namespace Assets.Scripts
 {
 
- 
+
     public class GameData
     {
+
+        public static int MAX_LEVEL = 16;
         public int Coins;
         public float CannonFireRate;
         public int SmallBallHealth;
