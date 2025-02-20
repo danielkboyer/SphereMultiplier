@@ -266,7 +266,7 @@ PlayerSettings:
   useCustomProguardFile: 0
   AndroidTargetArchitectures: 2
   AndroidSplashScreenScale: 2
-  androidSplashScreen: {fileID: 2800000, guid: ec7eeabeb44940c4a9b09c74b4cdddf6, type: 3}
+  androidSplashScreen: {fileID: 2800000, guid: f718dc5113a3c204d9fd1fce9eced9af, type: 3}
   AndroidKeystoreName: C:/Users/danie/Documents/AndroidBuild/PortalSpawner.keystore
   AndroidKeyaliasName: portal spawner
   AndroidEnableArmv9SecurityFeatures: 0
@@ -391,76 +391,76 @@ PlayerSettings:
   - m_BuildTarget: Android
     m_Icons:
     - m_Textures:
-      - {fileID: 2800000, guid: d421d9b07af7c5943b42fa21450acb2e, type: 3}
-      m_Width: 192
-      m_Height: 192
-      m_Kind: 0
-      m_SubKind: 
-    - m_Textures:
-      - {fileID: 2800000, guid: d421d9b07af7c5943b42fa21450acb2e, type: 3}
-      m_Width: 144
-      m_Height: 144
-      m_Kind: 0
-      m_SubKind: 
-    - m_Textures:
-      - {fileID: 2800000, guid: d421d9b07af7c5943b42fa21450acb2e, type: 3}
-      m_Width: 96
-      m_Height: 96
-      m_Kind: 0
-      m_SubKind: 
-    - m_Textures:
-      - {fileID: 2800000, guid: d421d9b07af7c5943b42fa21450acb2e, type: 3}
-      m_Width: 72
-      m_Height: 72
-      m_Kind: 0
-      m_SubKind: 
-    - m_Textures:
-      - {fileID: 2800000, guid: d421d9b07af7c5943b42fa21450acb2e, type: 3}
-      m_Width: 48
-      m_Height: 48
-      m_Kind: 0
-      m_SubKind: 
-    - m_Textures:
-      - {fileID: 2800000, guid: d421d9b07af7c5943b42fa21450acb2e, type: 3}
-      m_Width: 36
-      m_Height: 36
-      m_Kind: 0
-      m_SubKind: 
-    - m_Textures:
-      - {fileID: 2800000, guid: d421d9b07af7c5943b42fa21450acb2e, type: 3}
+      - {fileID: 2800000, guid: d14ff55a9c8431d4b87c037b0b0742d0, type: 3}
       m_Width: 192
       m_Height: 192
       m_Kind: 1
       m_SubKind: 
     - m_Textures:
-      - {fileID: 2800000, guid: d421d9b07af7c5943b42fa21450acb2e, type: 3}
+      - {fileID: 2800000, guid: d14ff55a9c8431d4b87c037b0b0742d0, type: 3}
       m_Width: 144
       m_Height: 144
       m_Kind: 1
       m_SubKind: 
     - m_Textures:
-      - {fileID: 2800000, guid: d421d9b07af7c5943b42fa21450acb2e, type: 3}
+      - {fileID: 2800000, guid: d14ff55a9c8431d4b87c037b0b0742d0, type: 3}
       m_Width: 96
       m_Height: 96
       m_Kind: 1
       m_SubKind: 
     - m_Textures:
-      - {fileID: 2800000, guid: d421d9b07af7c5943b42fa21450acb2e, type: 3}
+      - {fileID: 2800000, guid: d14ff55a9c8431d4b87c037b0b0742d0, type: 3}
       m_Width: 72
       m_Height: 72
       m_Kind: 1
       m_SubKind: 
     - m_Textures:
-      - {fileID: 2800000, guid: d421d9b07af7c5943b42fa21450acb2e, type: 3}
+      - {fileID: 2800000, guid: d14ff55a9c8431d4b87c037b0b0742d0, type: 3}
       m_Width: 48
       m_Height: 48
       m_Kind: 1
       m_SubKind: 
     - m_Textures:
-      - {fileID: 2800000, guid: d421d9b07af7c5943b42fa21450acb2e, type: 3}
+      - {fileID: 2800000, guid: d14ff55a9c8431d4b87c037b0b0742d0, type: 3}
       m_Width: 36
       m_Height: 36
       m_Kind: 1
+      m_SubKind: 
+    - m_Textures:
+      - {fileID: 2800000, guid: d14ff55a9c8431d4b87c037b0b0742d0, type: 3}
+      m_Width: 192
+      m_Height: 192
+      m_Kind: 0
+      m_SubKind: 
+    - m_Textures:
+      - {fileID: 2800000, guid: d14ff55a9c8431d4b87c037b0b0742d0, type: 3}
+      m_Width: 144
+      m_Height: 144
+      m_Kind: 0
+      m_SubKind: 
+    - m_Textures:
+      - {fileID: 2800000, guid: d14ff55a9c8431d4b87c037b0b0742d0, type: 3}
+      m_Width: 96
+      m_Height: 96
+      m_Kind: 0
+      m_SubKind: 
+    - m_Textures:
+      - {fileID: 2800000, guid: d14ff55a9c8431d4b87c037b0b0742d0, type: 3}
+      m_Width: 72
+      m_Height: 72
+      m_Kind: 0
+      m_SubKind: 
+    - m_Textures:
+      - {fileID: 2800000, guid: d14ff55a9c8431d4b87c037b0b0742d0, type: 3}
+      m_Width: 48
+      m_Height: 48
+      m_Kind: 0
+      m_SubKind: 
+    - m_Textures:
+      - {fileID: 2800000, guid: d14ff55a9c8431d4b87c037b0b0742d0, type: 3}
+      m_Width: 36
+      m_Height: 36
+      m_Kind: 0
       m_SubKind: 
     - m_Textures: []
       m_Width: 432
