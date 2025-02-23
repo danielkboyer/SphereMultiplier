@@ -31,7 +31,7 @@ namespace Assets.Scripts
                         smallEnemyAttack: 10,
                         bigEnemyAttack: 30,
                         level: 1,
-                        mainMenuLevel: GetMainMenuLevel(),
+                        mainMenuLevel: MainMenuLevel.GetDefaultLevel(1),
                         selectedCannon: new CannonData(CannonType.RegularGun),
                         unlockedCannons: new List<CannonData> { new CannonData(CannonType.ShotGun) }
                     );

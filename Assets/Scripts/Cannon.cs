@@ -7,12 +7,14 @@ using UnityEngine;
 
 namespace Assets.Scripts
 {
+    [System.Serializable]
     public enum CannonType
     {
         RegularGun,
         ShotGun,
         LaserGun,
     }
+    [System.Serializable]
     public class CannonData
     {
         public CannonType type;
