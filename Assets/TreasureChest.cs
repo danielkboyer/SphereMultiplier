@@ -47,7 +47,9 @@ public class TreasureChest : MonoBehaviour
                 text.text = amountNeeded.ToString();
             if (amountNeeded == 0)
             {
-                GameManager.Instance.AddCoins(coinsToGive);
+                var gameData = GameStorage.GetInstance().GetGameData();
+                gameData.Coins += coinsToGive;
+                GameStorage.GetInstance().SetGameData(gameData);
                 if (transform.parent != null)
                 {
                     Destroy(transform.parent.gameObject);
