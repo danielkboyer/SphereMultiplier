@@ -1,4 +1,6 @@
 
+using Assets;
+using Assets.Scripts;
 using System.Collections.Generic;
 using TMPro;
 using UnityEngine;
@@ -12,8 +14,11 @@ public class TreasureChest : MonoBehaviour
     public float timeBetweenAttacks = .3f;
     public Dictionary<int, float> ballAttackTime = new Dictionary<int, float>();
 
+    public GameManager gameManager;
+
     void Start()
     {
+        gameManager = FindFirstObjectByType<GameManager>();
         if (text != null)
             text.text = amountNeeded.ToString();
     }
@@ -47,9 +52,8 @@ public class TreasureChest : MonoBehaviour
                 text.text = amountNeeded.ToString();
             if (amountNeeded == 0)
             {
-                var gameData = GameStorage.GetInstance().GetGameData();
-                gameData.Coins += coinsToGive;
-                GameStorage.GetInstance().SetGameData(gameData);
+                gameManager.AddCoins(coinsToGive);
+             
                 if (transform.parent != null)
                 {
                     Destroy(transform.parent.gameObject);
