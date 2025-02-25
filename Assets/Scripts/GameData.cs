@@ -1,10 +1,11 @@
-﻿using System.Collections.Generic;
+using System.Collections.Generic;
 
 namespace Assets.Scripts
 {
 
 
-    public class GameData
+    [System.Serializable]
+public class GameData
     {
 
         public static int MAX_LEVEL = 16;

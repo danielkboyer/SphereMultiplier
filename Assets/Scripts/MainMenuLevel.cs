@@ -8,6 +8,7 @@ using static UnityEngine.Rendering.DebugUI;
 
 namespace Assets.Scripts
 {
+    [System.Serializable]
     public class MainMenuLevel
     {
         public static int ROW_SIZE = 28;
@@ -49,6 +50,8 @@ namespace Assets.Scripts
             var newBlocks = Enumerable.Repeat(1, MainMenuLevel.ROW_SIZE * 32).ToList();
             switch (level)
             {
+                case 1:
+                    return new MainMenuLevel(1, newBlocks, 5000, newBlocks.Count);
                 case 2:
                     return new MainMenuLevel(2, newBlocks, 5000, newBlocks.Count);
 
