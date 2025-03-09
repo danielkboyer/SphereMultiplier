@@ -26,8 +26,14 @@ public class GameData
 
         public MainMenuLevel MainMenuLevel;
 
+        public Base Base;
+
+        public Map Map;
+
+
+
         public int Level;
-        public GameData(int coins, float cannonFireRate, int smallBallHealth, int bigBallHealth, int smallEnemyHealth, int bigEnemyHealth, int smallBallAttack, int bigBallAttack, int smallEnemyAttack, int bigEnemyAttack, int level, MainMenuLevel mainMenuLevel, CannonData selectedCannon, List<CannonData> unlockedCannons)
+        public GameData(int coins, float cannonFireRate, int smallBallHealth, int bigBallHealth, int smallEnemyHealth, int bigEnemyHealth, int smallBallAttack, int bigBallAttack, int smallEnemyAttack, int bigEnemyAttack, int level, MainMenuLevel mainMenuLevel, CannonData selectedCannon, List<CannonData> unlockedCannons,Base _base, Map map)
         {
             this.Coins = coins;
             CannonFireRate = cannonFireRate;
@@ -43,6 +49,8 @@ public class GameData
             MainMenuLevel = mainMenuLevel;
             SelectedCannon = selectedCannon;
             UnlockedCannons = unlockedCannons;
+            Base = _base;
+            Map = map;
         }
     }
 }
