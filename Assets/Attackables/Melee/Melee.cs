@@ -5,7 +5,8 @@ public class Melee : Attackable
 {
     private MeleeStats? meleeStats;
     public override bool IsEnemy => false;
-
+    public override bool CanAttack => true;
+    public override bool IsBuilding => false;
     protected override float Health
     {
         get => meleeStats?.Health ?? 0;

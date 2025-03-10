@@ -20,7 +20,7 @@ namespace Assets.Scripts
             var baseAttackSpeed = 2f;
             var baseHealth = 50;
             var baseAttackDamage = 8;
-            var baseSightRadius = float.MaxValue;
+            var baseSightRadius = 15;
             var baseAttackRadius = 2;
 
 

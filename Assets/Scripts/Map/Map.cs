@@ -36,9 +36,10 @@ namespace Assets.Scripts
         static Level Level1()
         {
             return new Level(new List<SoldierWithPosition>() {
-                new() { SoldierType = SoldierType.Goblin, Position = new Vector3(-0.0105478168f, 0.370000005f, 4.63999987f), Level = 1 },
-                new() { SoldierType = SoldierType.Goblin, Position = new Vector3(0.0105478168f, 0.370000005f, 4.63999987f), Level = 1 },
-                new() { SoldierType = SoldierType.Goblin, Position = new Vector3(0f, 0.370000005f, 4.63999987f), Level=1 }
+                new() { SoldierType = SoldierType.Goblin, Position = new Vector3(-0.0105478168f,0, 4.63999987f), Level = 1 },
+                new() { SoldierType = SoldierType.Goblin, Position = new Vector3(0.0105478168f, 0, 4.63999987f), Level = 1 },
+                new() { SoldierType = SoldierType.Goblin, Position = new Vector3(0f, 0, 4.63999987f), Level=1 },
+                new() { SoldierType = SoldierType.EnemyCamp, Position = new Vector3(0f, 0, -6), Level=1 }
             });
         }
     }

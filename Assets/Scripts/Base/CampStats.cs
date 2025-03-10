@@ -21,7 +21,7 @@ namespace Assets.Scripts
         public static List<CampStats> GetInitialCamps()
         {
             List<CampStats> camps = new List<CampStats>();
-            camps.Add(new CampStats { Max = 5, Soldiers = new List<SoldierType>() { { SoldierType.Melee }, { SoldierType.Archer }, { SoldierType.Archer }, { SoldierType.Archer }, { SoldierType.Archer } }, Unlocked= true });
+            camps.Add(new CampStats { Max=5, Unlocked=false });
             return camps;
         }
     }

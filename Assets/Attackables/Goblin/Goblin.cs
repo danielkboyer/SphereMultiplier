@@ -5,7 +5,8 @@ public class Goblin : Attackable
 {
     private GoblinStats? goblinStats;
     public override bool IsEnemy => true;
-
+    public override bool CanAttack => true;
+    public override bool IsBuilding => false;
     protected override float Health
     {
         get => goblinStats?.Health ?? 0;

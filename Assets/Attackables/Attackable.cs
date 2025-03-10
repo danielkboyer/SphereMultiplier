@@ -1,15 +1,15 @@
-using System.Collections.Generic;
 using System.Linq;
 using UnityEngine;
 using UnityEngine.AI;
-using UnityEngine.UI;
-using static UnityEngine.GraphicsBuffer;
 #nullable enable
 public abstract class Attackable : MonoBehaviour
 {
 
     private HealthBar _healthBar;
     public bool IsInitialized { get; set; } = false;
+    abstract public bool CanAttack { get; }
+
+    abstract public bool IsBuilding { get; }
     abstract public bool IsEnemy { get; }
     abstract protected float Health { get; set; }
     abstract public float Speed { get; }
@@ -40,13 +40,17 @@ public abstract class Attackable : MonoBehaviour
     {
         _healthBar = GetComponentInChildren<HealthBar>();
         _healthBar.SetMaxHealth(Health);
-        
+
     }
     public void ParentInit()
     {
         IsInitialized = true;
-        NavMeshAgent agent = GetComponent<NavMeshAgent>();
-        agent.speed = Speed;
+        NavMeshAgent? agent = GetComponent<NavMeshAgent>();
+        if (agent != null)
+        {
+            agent.speed = Speed;
+        }
+
     }
 
     public void TakeDamage(float damage)
@@ -60,9 +64,9 @@ public abstract class Attackable : MonoBehaviour
     public void AttackableUpdate()
     {
 
-        
 
-        if(!IsInitialized)
+
+        if (!IsInitialized)
         {
             return;
         }
@@ -80,7 +84,7 @@ public abstract class Attackable : MonoBehaviour
 
         var enemies = FindObjectsByType<Attackable>(FindObjectsSortMode.None).Where(enemy => enemy.IsEnemy != this.IsEnemy && !enemy.IsDead && DistanceBetween(this, enemy) <= SightRadius);
 
-        var sortedEnemies = enemies.OrderBy(enemy => DistanceBetween(this, enemy));
+        var sortedEnemies = enemies.OrderBy(enemy => DistanceBetween(this, enemy) + (enemy.CanAttack ? 0 : 1000));
 
         if (sortedEnemies.Any())
         {
@@ -92,7 +96,7 @@ public abstract class Attackable : MonoBehaviour
             TryAttack();
             return;
         }
-      
+
 
     }
 
@@ -109,7 +113,7 @@ public abstract class Attackable : MonoBehaviour
             throw new System.Exception("currentEnemy is null");
         }
 
-        if(DistanceBetween(this,currentEnemy) > AttackRadius)
+        if (DistanceBetween(this, currentEnemy) > AttackRadius)
         {
             _attackSpeed = AttackSpeed;
             Walk();
@@ -118,13 +122,17 @@ public abstract class Attackable : MonoBehaviour
 
         LoadAttack();
 
-        
+
     }
 
     void LoadAttack()
     {
         NavMeshAgent agent = GetComponent<NavMeshAgent>();
-        agent.destination = transform.position;
+        if (agent != null)
+        {
+            agent.destination = transform.position;
+        }
+
         _attackSpeed -= Time.deltaTime;
         if (_attackSpeed <= 0)
         {
@@ -136,10 +144,19 @@ public abstract class Attackable : MonoBehaviour
 
     void Walk()
     {
+
+        if(IsBuilding)
+        {
+            return;
+        }
         if (currentEnemy != null)
         {
-            NavMeshAgent agent = GetComponent<NavMeshAgent>();
-            agent.destination = currentEnemy.transform.position;
+            NavMeshAgent? agent = GetComponent<NavMeshAgent>();
+            if (agent != null)
+            {
+                agent.destination = currentEnemy.transform.position;
+            }
+
 
             transform.LookAt(currentEnemy.transform, Vector3.up);
         }

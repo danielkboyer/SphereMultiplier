@@ -13,6 +13,7 @@ namespace Assets.Scripts
         Melee,
         Archer,
         Goblin,
+        EnemyCamp,
     }
 
     

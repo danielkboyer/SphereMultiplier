@@ -5,7 +5,11 @@ public class Archer : Attackable
 {
     public GameObject ArrowPrefab;
     private ArcherStats? archerStats;
+
+    public override bool CanAttack => true;
     public override bool IsEnemy => false;
+
+    public override bool IsBuilding => false;
 
     protected override float Health
     {

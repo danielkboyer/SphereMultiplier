@@ -8,6 +8,7 @@ public class BattleGameManager : MonoBehaviour
     public GameObject ArcherPrefab;
     public GameObject GoblinPrefab;
     public GameObject MeleePrefab;
+    public GameObject EnemyCampPrefab;
 
 
     public float GoodGuySpawnZ = -24;
@@ -48,6 +49,12 @@ public class BattleGameManager : MonoBehaviour
                 break;
             case SoldierType.Melee:
                 prefab = MeleePrefab;
+                break;
+            case SoldierType.EnemyCamp:
+                prefab = EnemyCampPrefab;
+                break;
+            default:
+                Debug.LogError("Unknown soldier type");
                 break;
         }
        var attackable =  Instantiate(prefab, soldierWithPosition.Position, Quaternion.identity).GetComponent<Attackable>();
